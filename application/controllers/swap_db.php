@@ -99,28 +99,41 @@ class Swap_db extends MY_Controller {
         
         $styles = $this->db->select('id, name')->get('styles')->result();
         $frame_materials = $this->db->select('id, name')->get('frame_materials')->result();
-        $lens_materials  = $this->db->select('id, name')->get('lense_materials')->result();        
-        $query = $this->db->distinct('model')->get('sunglasshut')->result();
+        $lens_materials  = $this->db->select('id, name')->get('lense_materials')->result();
+        $models_obj = $this->db->select('model')->distinct()->get('sunglasshut')->result_array();
+        $models_arr = array();
+        echo array_walk_recursive($models_obj, function($i,$key,$arr){ $arr[] = $i;},&$models_arr);
+        $query = $this->db->get('sunglasshut')->result();
         
-        
-        foreach($query as $row){
-            $data = array();
-            foreach($brands as $elem)
-                if ($elem->name == $row->brand) $data['brand_id'] = $elem->id;
-            foreach($frame_materials as $elem)
-                if ($elem->name == $row->frame_material) $data['frame_material_id'] = $elem->id;
-            foreach($lens_materials as $elem)
-                if ($elem->name == $row->lense_material) $data['lense_material_id'] = $elem->id;
-            foreach($styles as $elem)
-                if ($elem->name == $row->style) $data['style_id'] = $elem->id;
-            $data['name'] = $row->model;
-            $this->db->insert('models',$data);
-            print_flex($row);
-            print_flex($data);
+        print_flex($models_arr);
+//        print_flex($models_obj);
+//        return;
+        foreach($models_arr as $row){
+            foreach($query as $q)
+                if ($row == $q->model){                     
+                    foreach($brands as $elem)
+                        if ($q->brand == $elem->name )$data['brand_id'] = $elem->id;
+                    
+                    foreach($frame_materials as $elem)
+                        if ($q->frame_material == $elem->name )$data['frame_material_id'] = $elem->id;
+                    
+                    foreach($lens_materials as $elem)
+                        if ($q->lense_material == $elem->name )$data['lense_material_id'] = $elem->id;                        
+                    
+                    foreach($styles as $elem)
+                        if ($q->style == $elem->name ) $data['style_id'] = $elem->id;
+                    
+                    $data['name'] = $q->model;
+                    $this->db->insert('models', $data);
+                    break;
+                }
+            
+            
+                            
         }
     }
     public function add_sets(){
-        $colors = $this->db->select('id, name')->get('colors')->result();
+        $colors = $this->db->select('id, name')->get('frame_colors')->result();
         $models = $this->db->select('id, name')->get('models')->result();
         $query = $this->db->get('sunglasshut')->result();
         foreach($query as $row){
@@ -130,11 +143,11 @@ class Swap_db extends MY_Controller {
             foreach($colors as $elem)
                 if ($elem->name == $row->frame_color) $data['frame_color_id'] = $elem->id;
             foreach($colors as $elem)
-                if ($elem->name == $row->lense_color) $data['lense_color_id'] = $elem->id;                        
+                if ($elem->name == $row->lense_color) $data['lense_color_id'] = $elem->id;
             $data['eye_size']       = $row->eye_size;
             $data['bridge_size']    = $row->bridge_size;
-            $data['temple_size']    = $row->temple_size;
-            $data['UPS']            = $row->upc;
+            $data['temple_size']    = $row->temple_size;            
+            $data['upc']            = $row->upc;
             $this->db->insert('sets',$data);
             print_flex($row);
             print_flex($data);

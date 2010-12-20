@@ -51,7 +51,7 @@ $autoload['libraries'] = array('template', 'database', 'datamapper', 'linker');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('migaz_helper');
+$autoload['helper'] = array('url','migaz_helper');
 
 
 /*

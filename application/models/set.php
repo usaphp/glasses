@@ -6,7 +6,7 @@
  */
 class Set extends DataMapper {
 	
-	var $has_one = array();
+	var $has_one = array('model', 'lense_color', 'frame_color');
 	
 	var $has_many = array();
 	
