@@ -35,7 +35,25 @@ define('FOPEN_WRITE_CREATE', 					'ab');
 define('FOPEN_READ_WRITE_CREATE', 				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT', 			'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
-
-
+/*
+|--------------------------------------------------------------------------
+|Sort table models 
+|--------------------------------------------------------------------------
+*/
+define('SORT_BY_MODEL', 1);
+define('SORT_BY_BRAND', 3);
+define('SORT_BY_STYLE', 5);
+define('SORT_BY_FRAME', 7);
+define('SORT_BY_LENSE', 9);
+/*
+|--------------------------------------------------------------------------
+|Image manipulation 
+|--------------------------------------------------------------------------
+*/
+define('IMAGE_CAT_MODEL_SET', 'image_model_set');
+define('IMAGE_SIZE_TINY', 'tiny');
+define('IMAGE_SIZE_SMALL', 'small');
+define('IMAGE_SIZE_MEDIUM', 'medium');
+define('IMAGE_SIZE_LARGE', 'large');
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

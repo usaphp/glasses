@@ -39,7 +39,7 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('template', 'database', 'datamapper', 'linker');
+$autoload['libraries'] = array('template', 'database', 'datamapper', 'linker','image_lib', 'picture');
 
 
 /*
@@ -79,7 +79,7 @@ $autoload['plugin'] = array();
 |
 */
 
-$autoload['config'] = array('config');
+$autoload['config'] = array('config','picture');
 
 
 /*

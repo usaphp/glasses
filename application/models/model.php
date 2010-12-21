@@ -35,12 +35,15 @@ class Model extends DataMapper {
     }
     
     public function get_full_info($id = false){
-        if($id)
+        if($id){
             $this->include_related('brand')
                     ->include_related('frame_material')
                     ->include_related('lense_material')
-                    ->include_related('style')->get_by_id($id);
-        else{
+                    ->include_related('style')
+                    ->get_by_id($id);
+            $this->set->include_related('frame_color')
+                        ->include_related('lense_color')->get();
+        }else{
             $this->include_related('brand')
                     ->include_related('frame_material')
                     ->include_related('lense_material')
@@ -50,7 +53,6 @@ class Model extends DataMapper {
                         ->include_related('frame_color')
                         ->get();
         }
-        
     }
     
     function __construct($id = NULL){

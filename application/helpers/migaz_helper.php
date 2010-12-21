@@ -20,4 +20,18 @@
             print_r($arr);
         echo '</pre>';
     }
+    
+        # Returns a slashed at the end document root, adds a slash to the end of document root if there is no one.
+    function slashed_root(){
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        if(substr($root, -1) == '/') return $root;
+        return $root.'/';
+    }
+
+    # Returns a unslashed at the end document root, adds a slash to the end of document root if there is no one.
+    function unslashed_root(){
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        return rtrim($root,"/");
+    }
+	# return date
 ?>
