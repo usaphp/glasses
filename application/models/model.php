@@ -8,7 +8,7 @@ class Model extends DataMapper {
 	
 	var $has_one = array('brand', 'frame_material', 'lense_material', 'style');
 
-	var $has_many = array('set');
+	var $has_many = array('set','store','feature');
 	
 //	var $validation = array(
 //		'example' => array(
@@ -43,6 +43,8 @@ class Model extends DataMapper {
                     ->get_by_id($id);
             $this->set->include_related('frame_color')
                         ->include_related('lense_color')->get();
+            $this->store->include_join_fields()->get();
+            $this->feature->include_join_fields()->get();
         }else{
             $this->include_related('brand')
                     ->include_related('frame_material')
@@ -52,6 +54,8 @@ class Model extends DataMapper {
             $this->set->include_related('frame_color')
                         ->include_related('frame_color')
                         ->get();
+            $this->store->include_join_fields()->get();
+            $this->feature->include_join_fields()->get();   
         }
     }
     

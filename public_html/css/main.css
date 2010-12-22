@@ -1,2 +1,5 @@
 .pagination{}
     .pagination span {margin-right: 10px;}
+/*Page model description*/
+.model_description{color:#665;}
+    .model_description strong {color:#111;}

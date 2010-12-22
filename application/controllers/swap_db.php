@@ -94,6 +94,21 @@ class Swap_db extends MY_Controller {
             $this->db->insert('features', array('name'=>$row));
         }
     }
+    public function add_model_description(){
+        $query = $this->db->get('sunglasshut')->result();
+        $models = $this->db->select('name')->distinct()->get('models')->result();
+        foreach($query as $row){
+            foreach($models as $model){
+                if($row->model == $model->name){
+                    echo $row->model.' '.$row->description.'</br>';
+                    $this->db->where('name',$model->name)
+                            ->update('models',array('description'=>$row->description));
+                    break ;
+                }
+            }
+        }
+    }
+    
     public function add_model(){
 		$brands = $this->db->select('id, name')->get('brands')->result();        
         
@@ -152,6 +167,77 @@ class Swap_db extends MY_Controller {
             print_flex($row);
             print_flex($data);
         }
+    }
+    public function add_images(){
+  		$config['upload_path'] = 'images\photo\model_sets';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$FILE['userfile'] = 'http://s7d3.scene7.com/is/image/LuxotticaRetail/745016235366_shad_qt?$pngalpha$&wid=2400';
+		$this->load->library('upload', $config);	
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+			
+			#$this->load->view('upload_form', $error);
+		}	
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+			
+			#$this->load->view('upload_success', $data);
+		}
+    }
+    public function add_feature_model(){
+        $sunglass_query = $this->db->select('model, features, models.id')
+                            ->join('models','models.name = sunglasshut.model')
+                            ->get('sunglasshut')->result();
+                                    
+        $features_query = $this->db->select('name,id')->get('features')->result();
+
+        
+        
+        
+        $sunglass = array();
+        foreach($sunglass_query as $sun)
+            if(!isset($sunglass[$sun->model])){      
+                $sunglass[$sun->model]['features'] = array_map(function($y){return trim($y);},explode(',',$sun->features));                
+                $sunglass[$sun->model]['id'] = $sun->id; 
+            }
+        
+        
+                #if($feat == $row->name)
+                    #$feat['id'] = $row->id;
+                    #echo $row->id.' '.$row->name;
+                    
+        print_flex($sunglass);            
+        foreach($sunglass as $key=>$sun)            
+            foreach($sun['features'] as $feature)                
+                    foreach($features_query as $row)
+                        if($feature == $row->name)
+                            echo 1;
+                            #$this->db->insert('features_models',array('model_id'=>$sun['id'],'feature_id'=>$row->id));        
+        
+    }
+    public function add_models_stores(){
+        $sunglass_query = $this->db->select('model, price, models.id')
+                            ->join('models','models.name = sunglasshut.model')
+                            ->get('sunglasshut')->result();
+        print_flex($sunglass_query);
+        $sunglass = array();
+        foreach($sunglass_query as $sun)
+            if(!isset($sunglass[$sun->model])){
+                $sunglass[$sun->model]['id'] = $sun->id;
+                $sunglass[$sun->model]['price'] = $sun->price;
+                #$this->db->insert('models_stores',array('model_id'=>$sun->id,'stores_id'=>1,'price'=>$sun->price));
+            }
+        
+    }
+
+    public function add_models_stores_url(){
+        $sets_query = $this->db->select('model_id, page_url')->distinct()->get('sets')->result();
+        //foreach($sets_query as $set)            
+//                $this->db->where('model_id', $set->model_id)
+//                            ->update('models_stores', array('page_url'=>$set->page_url));
+            
     }
 }
 

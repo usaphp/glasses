@@ -4,11 +4,11 @@
 *
 * 
  */
-class Feature extends DataMapper {
+class Store extends DataMapper {
 	
 	var $has_one = array();
 	
-	var $has_many = array('model');
+	var $has_many = array('model','coupon');
 	
 //	var $validation = array(
 //		'example' => array(

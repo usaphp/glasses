@@ -28,23 +28,24 @@ class Set extends DataMapper {
     function get_short_info($id = false){
         if($id){
             $this->include_related('frame_color')
-                ->include_related('frame_color')
+                ->include_related('lense_color')
                 ->get_by_id($id);
         }else{
             $this->include_related('frame_color')
-                ->include_related('frame_color')
+                ->include_related('lense_color')
                 ->get();        
         }
     }
     function get_full_info($id = false){
         if($id){
             $this->include_related('frame_color')
-                ->include_related('frame_color')
+                ->include_related('lense_color')
                 ->get_by_id($id);
             $this->set_images->get();
+                        
         }else{
             $this->include_related('frame_color')
-                ->include_related('frame_color')
+                ->include_related('lense_color')
                 ->get();
             $this->set_images->get();
         }
