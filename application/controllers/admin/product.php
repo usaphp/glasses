@@ -1,6 +1,6 @@
 <?php
 
-class Models extends Admin_Controller {
+class Product extends Admin_Controller {
 
 	function __construct()
 	{
@@ -9,15 +9,37 @@ class Models extends Admin_Controller {
 	
 	function index()
 	{
-		
+	   	
 	}
+    
     public function edit($model_id = false){
         if (!$model_id) {
             $this->show();
             return;
         }
+        $product    = new Model();
+        $brands     = new Brand();
+        $styles     = new Style();
+        $features   = new Feature();
         
         
+        $product->get_full_info($model_id);
+        $brands->get_short_info();
+        $styles->get_short_info();
+        $features->get_short_info();
+        $convert_for_dropdown = 
+            function($x,&$y)
+                {
+                    array_walk($x,function($val,$key,$output){ $output['value']=$val; $output['name']= $key;}, &$y);
+                };
+                                    
+        $this->data['dm_product_selected']  = $product;
+        $this->data['arr_brands']           =  array();               
+        $convert_for_dropdown($brands->all_to_array(),$this->data['arr_brands']);
+        $this->data['arr_styles']           = $styles->all_to_array();
+        $this->data['arr_features'] = $features->all_to_array();
+        
+        $this->template->load('/admin/templates/admin_template', 'admin/product/edit',$this->data);
     }
     public function show($page_number = 1, $sort_by = SORT_BY_MODEL){
         $limit  = 10;
