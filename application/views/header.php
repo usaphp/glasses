@@ -8,4 +8,3 @@
         <link rel="stylesheet" href="/css/main.css" type="text/css"/>
     </head>
     <body>
-        <div class='container'>

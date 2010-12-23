@@ -1,3 +1,7 @@
+body { background:url('/images/layout/background.png') top center; }
+
+/* Header */
+
 .pagination{}
     .pagination span {margin-right: 10px;}
 /*Page model description*/
