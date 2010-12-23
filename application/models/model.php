@@ -4,7 +4,7 @@
 *
 * 
  */
-class Model extends DataMapper {
+class Model extends DataMapper{
 	
 	var $has_one = array('brand', 'frame_material', 'lense_material', 'style');
 
@@ -21,6 +21,10 @@ class Model extends DataMapper {
 	/**
     * Constructor: calls parent constructor
     */
+    function __construct($id = NULL){
+		parent::__construct($id);
+    }
+    
     public function get_short_info($id = false){
         if($id)
             $this->include_related('brand')
@@ -43,11 +47,8 @@ class Model extends DataMapper {
                     ->get_by_id($id);
             $this->set->include_related('frame_color')
                         ->include_related('lense_color')->get();
-            $this->store->include_join_fields()->get();
-            $this->feature->include_join_fields()->get();
-            
-            $this->feature = $this->feature->all_to_array($this->feature);
-            print_flex($this->feature);
+            $this->store->include_join_fields()->get();            
+            $this->feature = $this->all_to_array($this->feature->include_join_fields()->get());
             
         }else{
             $this->include_related('brand')
@@ -63,10 +64,7 @@ class Model extends DataMapper {
             
         }
     }
-    
-    function __construct($id = NULL){
-		parent::__construct($id);
-    }
+
 }
 
 /* End of file template.php */
