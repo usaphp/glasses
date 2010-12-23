@@ -43,7 +43,8 @@
             <li><strong>Style:&nbsp;</strong><?php echo $dm_model_selected->style_name;?></li>
             <li><strong>Frame:&nbsp;</strong><?php echo $dm_model_selected->frame_material_name;?></li>
             <li><strong>Lense:&nbsp;</strong><?php echo  $dm_model_selected->lense_material_name;?></li>
-            <li><strong>Feature:&nbsp;</strong><?php echo  $dm_model_selected->feature;?></li>
+            
+            <li><strong>Feature:&nbsp;</strong><?php array_walk($dm_model_selected->feature,function($val){echo $val['name'].' ';});?></li>
         </ul>
         
     </div>

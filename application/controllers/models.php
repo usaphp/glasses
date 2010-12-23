@@ -16,10 +16,10 @@ class Models extends MY_Controller {
         $model = new Model();
         $sets  = new Set();
         #!
-        if(!$model_id) $model->limit(1);
+        if(!$model_id) $model_id = 1;
         $model->get_full_info($model_id);
         #!
-        if(!$set_id) $model->set->limit(1);        
+        if(!$set_id) $set_id = 1 ;        
         $model->set->get_full_info($set_id);
         #!
         $sets->where_related($model)->get_short_info();

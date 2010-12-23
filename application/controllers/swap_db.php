@@ -4,6 +4,7 @@ class Swap_db extends MY_Controller {
 
 	function __construct(){
 		parent::__construct();	
+        set_time_limit(5000);
 	}
 	
 	function index(){
@@ -238,6 +239,34 @@ class Swap_db extends MY_Controller {
 //                $this->db->where('model_id', $set->model_id)
 //                            ->update('models_stores', array('page_url'=>$set->page_url));
             
+    }
+    public function get_content(){
+        $sunglass_query = $this->db->select('model, image_url, image_front_url, models.id')
+                            ->join('models','models.name = sunglasshut.model')                            
+                            ->get('sunglasshut')->result();
+        
+        foreach($sunglass_query as $row){
+            $abs_path = 'C:\xampp\projects\migaz\public_html\images\photo\model_sets\\';
+            #IMAGE
+            $url_image_array = explode('/',$row->image_url);            
+            $image_name = current(explode('?',$url_image_array[6])).'.png';
+            if (!file_exists($abs_path.$image_name)){
+                $image = file_get_contents($row->image_url);
+                file_put_contents($abs_path.$image_name, $image);
+                echo $image_name;
+            }        
+            #FRONT IMAGE
+            
+            $url_front_image_array = explode('/',$row->image_front_url);            
+            $image_front_name = current(explode('?',$url_front_image_array[6])).'.png';
+            
+            if (!file_exists($abs_path.$image_front_name)){
+                $image = file_get_contents($row->image_front_url);
+                file_put_contents($abs_path.$image_front_name,$image);
+                echo $image_front_name;
+            }
+            print_flex($row);                        
+        }
     }
 }
 
