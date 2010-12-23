@@ -1,7 +1,7 @@
 
-<div class="span-24">
+<div class="span-24" class='product_info_wrapper'>
     
-    <div class="set_main_image span-16">
+    <div class="span-16">
         
         <img src="<?php echo array_shift($images_path);?>"/>
         
@@ -15,7 +15,7 @@
         
     </div>
     
-    <div class="model_description span-8 last">
+    <div class="span-8 last">
         
         <div><h2><?php echo $dm_model_selected->name;?></h2></div>
         

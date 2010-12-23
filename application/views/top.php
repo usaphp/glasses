@@ -1,12 +1,12 @@
-<div>
-	<a href='#' title='migaz.com' class='span-6'><img src='/images/layout/logo.png' alt='Migaz.com'/></a>
-	<div class='span-10'>
-		<form>
-			<label>Search</label>
-			<input type='text'/>
-			<button>Search</button>
+<div class='top_wrapper span-24'>
+	<div class='span-6'>
+		<a href='#' title='migaz.com' class='logo_top_link'><img src='/images/layout/logo_top.png' alt='Migaz.com'/></a>
+	</div>
+	<div class='span-12'>
+		<form class='top_search_form'>
+			<input type='text' class='top_search_input'/>
+			<a href='#' class='top_search_link'>Search</a>
 		</form>
 	</div>
-	<div class='span-8'></div>
-	<div class='clear'></div>
+	<div class='span-6 last'></div>
 </div>

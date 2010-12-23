@@ -1,6 +1,6 @@
 <?php
 
-class Models extends MY_Controller {
+class Product extends MY_Controller {
 
 	function __construct()
 	{
@@ -35,7 +35,7 @@ class Models extends MY_Controller {
         
         $this->data['dm_sets']           = $sets;
                 
-        $this->template->load('/templates/main_template', 'models/show', $this->data);
+        $this->template->load('/templates/main_template', 'product/show', $this->data);
     }
 }
 
