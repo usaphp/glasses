@@ -177,7 +177,7 @@ define('DMZ_CLASSNAMES_KEY', '_dmz_classnames');
  * @method DataMapper clear_cache() get_cached($segment,...) NEEDS SIMPLECACHE EXTENSION.  Clears a cache for the specfied segment.
  *
  */
-class DataMapper implements IteratorAggregate {
+class DataMapper extends DMZ_Array implements IteratorAggregate {
 
 	/**
 	 * Stores the shared configuration

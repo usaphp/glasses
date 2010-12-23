@@ -39,7 +39,7 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('template', 'database', 'datamapper', 'linker','image_lib', 'picture');
+$autoload['libraries'] = array('template', 'database', 'dmz_array', 'datamapper', 'linker','image_lib', 'picture');
 
 
 /*
