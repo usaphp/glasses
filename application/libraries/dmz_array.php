@@ -33,8 +33,8 @@ class DMZ_Array {
 	 * @return	array An associative array of the requested fields and related object ids.
 	 */
 	function to_array($object, $fields = '')
-	{
-		// assume all database columns if $fields is not provided.
+	{		
+        // assume all database columns if $fields is not provided.
 		if(empty($fields))
 		{
 			$fields = $object->fields;
@@ -75,14 +75,13 @@ class DMZ_Array {
 	 * @param	array $fields Array of fields to include.  If empty, includes all database columns.
 	 * @return	array An array of associative arrays.
 	 */
-	function all_to_array($object, $fields = '')
-	{
+	function all_to_array($object, $fields = ''){
 		// loop through each object in the $all array, convert them to
 		// an array, and add them to a new array.
 		$result = array();
 		foreach($object as $o)
 		{
-			$result[] = $o->to_array($fields);
+			$result[] = $o->to_array($o, $fields);
 		}
 		return $result;
 	}
