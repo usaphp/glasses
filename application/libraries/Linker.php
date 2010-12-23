@@ -14,7 +14,7 @@ class Linker {
         return $url;
     }
     public function models_show($model_id,$set_id = false){
-        $segments = array('models', 'show', $model_id, $set_id);
+        $segments = array('product', 'show', $model_id, $set_id);
         $url = generate_url($segments);
         return $url;
     }

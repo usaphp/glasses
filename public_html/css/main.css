@@ -1,3 +1,28 @@
+body { background:url('/images/layout/background.png') top center; font-size:12px; }
+
+/* For chrome */
+input[type='text'] { margin:0px; }
+
+/* General styles */
+.clear { clear:both; display:block; height:0px; }
+.separator-10 { padding:5px 0px; }
+/* Header */
+.top_wrapper { background:#f1f1f1; }
+	.logo_top_link { display:block; margin:15px 20px; }
+	.top_search_form { padding-top:7px; float:left; }
+	.top_search_input { padding:8px 3px; display:block; float:left; border:1px solid #dbdbdb; width:350px; line-height:12px; }
+	.top_search_link { padding:10px 15px;  background:#e4e4e4; display:block; float:left; color:#1a1a1a; text-decoration:none; border:1px solid #dbdbdb; border-left:none; line-height:12px; }
+/* Top menu */
+#top_menu { margin-top:40px; }
+	#top_menu ul { list-style:none; float:left; margin:0px; }
+		#top_menu ul li { float:left; width:166px; }
+		#top_menu ul li a { display:block; border-right:1px solid #fff; border-left:1px solid #bbbbbb; background:#dcdcdc; text-align:center; padding:5px 0px; color:#000; font-size:14px; text-transform:uppercase; text-decoration:none; }
+		#top_menu ul .tm_last { margin:0px; }
+		#top_menu ul .tm_last { width:168px; }
+		
+/* Product info */
+.product_info_wrapper { background:#fff; }
+		
 .pagination{}
     .pagination span {margin-right: 10px;}
 /*Page model description*/
