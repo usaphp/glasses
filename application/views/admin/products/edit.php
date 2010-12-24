@@ -31,12 +31,12 @@
 <div class="span-24">
     <div><?php echo 'Edit: '.$dm_product_selected->name;?></div>
     <?php 
-    echo form_open_multipart('/admin/product/edit/'.$dm_product_selected->id, array());
+    echo form_open_multipart($this->linker->a_products_edit($dm_product_selected->id), array());
     
-    echo form_label('Style', $sel_brands['id'], array('class' => 'f_label'));
+    echo form_label('Brand', $sel_brands['id'], array('class' => 'f_label'));
     echo form_dropdown($sel_brands['name'], $sel_brands['options'], $sel_brands['selected'], 'id = "'.$sel_brands['id'].'" class = "'.$sel_brands['class'].'"');
     
-    echo form_label('Brand', $sel_styles['id'], array('class' => 'f_label'));
+    echo form_label('Style', $sel_styles['id'], array('class' => 'f_label'));
     echo form_dropdown($sel_styles['name'], $sel_styles['options'], $sel_styles['selected'], 'id = "'.$sel_styles['id'].'" class = "'.$sel_styles['class'].'"');
     
     echo form_label('Features', $sel_features['id'], array('class' => 'f_label'));

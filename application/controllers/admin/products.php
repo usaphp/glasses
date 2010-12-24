@@ -16,8 +16,7 @@ class Products extends Admin_Controller {
         if (!$model_id) {
             $this->show();
             return;
-        }
-        
+        }        
         $product    = new Product();
         $brands     = new Brand();
         $styles     = new Style();
@@ -27,18 +26,22 @@ class Products extends Admin_Controller {
         if($this->input->post('button_save_name'))
         {
 
-            $brand_id   = $this->input->post('brands_name');
-            $style_id   = $this->input->post('styles_name');
-            $features   = $this->input->post('features_name');
+            $brand_selected     = $this->input->post('brands_name');
+            $style_selected     = $this->input->post('styles_name');
+            $features_selected  = $this->input->post('features_name');
             
-            $brand      = new Brand($brand_id);
-            $style      = new Style($style_id);
+            $brand      = new Brand($brand_selected);
+            $style      = new Style($style_selected);
             $features   = new Feature();
+            $features->where_in('id', $features_selected)->get();
             
             $product->get_short_info($model_id);
+            #SAVE
+            $product->save(array($brand, $features->all, $style));
+            #DELETE
+            $features->where_not_in('id', $features_selected)->get();
+            $product->delete($features->all);
             
-            $features->where_in($features)->get();
-            $product->save($brand);
         }
         
         $product ->get_full_info($model_id);        
@@ -68,14 +71,14 @@ class Products extends Admin_Controller {
         #$this->data['arr_features']             = $convert_for_dropdown($features->all_to_array());
         #$this->data['arr_features_selected']    = $convert_for_dropdown($product->feature->all_to_array());
         
-        $this->template->load('/admin/templates/admin_template', 'admin/product/edit',$this->data);
+        $this->template->load('/admin/templates/admin_template', 'admin/products/edit',$this->data);
     }
     
     public function show($page_number = 1, $sort_by = SORT_BY_MODEL){
         $limit  = 10;
         $offset = (($page_number-1) * 10);
         #$models_old = $this->db->select()->limit($limit,$offset)->get('sunglasshut')->result();            
-        $models = new Model();
+        $models = new Product();
         switch($sort_by){
             case SORT_BY_MODEL:
                 $models->order_by('name');
@@ -94,7 +97,7 @@ class Products extends Admin_Controller {
         $this->data['page_count']   = $models->count()/$limit;
         $this->data['page_current'] = $page_number;
         $this->data['sort_by']      = $sort_by;            
-        $this->template->load('/templates/main_template', 'catalog/show',$this->data);
+        $this->template->load('admin/templates/admin_template', 'admin/products/show',$this->data);
     }
     
 }
