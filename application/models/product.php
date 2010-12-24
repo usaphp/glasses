@@ -4,7 +4,7 @@
 *
 * 
  */
-class Model extends DataMapper{
+class Product extends DataMapper{
 	
 	var $has_one = array('brand', 'frame_material', 'lense_material', 'style');
 
@@ -48,7 +48,7 @@ class Model extends DataMapper{
             $this->set->include_related('frame_color')
                         ->include_related('lense_color')->get();
             $this->store->include_join_fields()->get();
-            #$this->feature = $this->all_to_array($this->feature->include_join_fields()->get());
+            $this->feature->include_join_fields()->get();
         }else{
             $this->include_related('brand')
                     ->include_related('frame_material')
@@ -58,11 +58,9 @@ class Model extends DataMapper{
             $this->set->include_related('frame_color')
                         ->include_related('frame_color')
                         ->get();
-            $this->store->include_join_fields()->get();
-            $this->feature->include_join_fields()->get();
-            foreach($this as $model){
-                 #$model->feature = $this->all_to_array($model->feature->include_join_fields()->get());
-            }
+            $this->store->include_join_fields()->get();            
+            foreach($this as $product)
+                $product->feature->include_join_fields()->get();            
         }
     }
 

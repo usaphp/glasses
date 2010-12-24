@@ -8,7 +8,7 @@ class Style extends DataMapper {
 	
 	var $has_one = array();
 	
-	var $has_many = array();
+	var $has_many = array('product');
 	
 //	var $validation = array(
 //		'example' => array(

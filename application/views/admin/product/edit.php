@@ -1,24 +1,31 @@
-<?php
-	$sel_styles = array(
-        'options'   => $arr_styles,
-        'name'      => 'style_id',
-        'id'        => 'style_id',
-        'class'     => 'f_select',
-        'selected'  => ''
-    );
+<?php	
     $sel_brands = array(
         'options'   => $arr_brands,
-        'name'      => 'brand_id',
-        'id'        => 'brand_id',
+        'name'      => 'brands_name',
+        'id'        => 'brands_id',
         'class'     => 'f_select',
-        'selected'  => ''
+        'selected'  => $dm_product_selected->brand_id
+    );
+    $sel_styles = array(
+        'options'   => $arr_styles,
+        'name'      => 'styles_name',
+        'id'        => 'styles_id',
+        'class'     => 'f_select',
+        'selected'  => $dm_product_selected->style_id
     );
     $sel_features = array(
         'options'   => $arr_features,
-        'name'      => 'brand_id',
-        'id'        => 'brand_id',
+        'name'      => 'features_name[]',
+        'id'        => 'features_id',
         'class'     => 'f_select',
-        'selected'  => ''
+    #поменять местами id -> name 
+        'selected'  => array_flip($arr_features_selected)        
+    );
+    $btn_save = array(
+        'name' => 'button_save_name',
+        'value'=> 'Save',
+        'id'   => 'button_save_id',
+        'class'=> 'f_button'
     );
 ?>
 <div class="span-24">
@@ -33,10 +40,9 @@
     echo form_dropdown($sel_styles['name'], $sel_styles['options'], $sel_styles['selected'], 'id = "'.$sel_styles['id'].'" class = "'.$sel_styles['class'].'"');
     
     echo form_label('Features', $sel_features['id'], array('class' => 'f_label'));
-    echo form_dropdown($sel_features['name'], $sel_features['options'], $sel_features['selected'], 'id = "'.$sel_features['id'].'" class = "'.$sel_features['class'].'"');
+    echo form_dropdown($sel_features['name'], $sel_features['options'], $sel_features['selected'], 'id = "'.$sel_features['id'].'" class = "'.$sel_features['class'].'" multiple = "multiple"');
     
-    echo anchor('admin/product/edit/'.$dm_product_selected->id, 'Add', array('class' => 't_action'));
-    
+    echo form_submit($btn_save);
     echo form_close();
     ?>              
 </div>

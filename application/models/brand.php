@@ -8,7 +8,7 @@ class Brand extends DataMapper {
 	
 	var $has_one = array();
 	
-	var $has_many = array('model');
+	var $has_many = array('product');
 	
 //	var $validation = array(
 //		'example' => array(

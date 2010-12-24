@@ -8,7 +8,7 @@ class Store extends DataMapper {
 	
 	var $has_one = array();
 	
-	var $has_many = array('model','coupon');
+	var $has_many = array('product','coupon');
 	
 //	var $validation = array(
 //		'example' => array(
