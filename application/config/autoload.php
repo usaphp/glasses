@@ -39,8 +39,7 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('template', 'database', 'dmz_array', 'datamapper', 'linker','image_lib', 'picture');
-
+$autoload['libraries'] = array('template', 'validation', 'database', 'dmz_array', 'datamapper', 'linker','image_lib', 'picture');
 
 /*
 | -------------------------------------------------------------------
@@ -51,7 +50,7 @@ $autoload['libraries'] = array('template', 'database', 'dmz_array', 'datamapper'
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','migaz_helper');
+$autoload['helper'] = array('url','form','migaz_helper');
 
 
 /*

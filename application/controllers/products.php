@@ -1,6 +1,6 @@
 <?php
 
-class Product extends MY_Controller {
+class Products extends MY_Controller {
 
 	function __construct()
 	{
@@ -13,13 +13,13 @@ class Product extends MY_Controller {
 	}
     
     function show($model_id = false, $set_id = false){ 
-        $model = new Model();
+        $model = new Product();
         $sets  = new Set();
         #!
-        if(!$model_id) $model->limit(1);
+        if(!$model_id) $model_id = 1;
         $model->get_full_info($model_id);
         #!
-        if(!$set_id) $model->set->limit(1);        
+        if(!$set_id) $set_id = 1 ;        
         $model->set->get_full_info($set_id);
         #!
         $sets->where_related($model)->get_short_info();
@@ -35,7 +35,7 @@ class Product extends MY_Controller {
         
         $this->data['dm_sets']           = $sets;
                 
-        $this->template->load('/templates/main_template', 'product/show', $this->data);
+        $this->template->load('/templates/main_template', 'products/show', $this->data);
     }
 }
 

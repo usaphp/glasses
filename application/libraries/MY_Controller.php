@@ -3,10 +3,10 @@
 class Admin_Controller extends Controller {
     protected $data;
     function __construct(){
-        parent::__construct();        
+        parent::__construct();
         $this->data                 = array();
         $this->data['js_functions'] = array();
-        $this->data['crumbs']       = array();
+        $this->data['crumbs']       = array();    
         $this->output->enable_profiler(TRUE);
     }
 }

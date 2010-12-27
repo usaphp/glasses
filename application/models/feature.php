@@ -8,7 +8,7 @@ class Feature extends DataMapper {
 	
 	var $has_one = array();
 	
-	var $has_many = array('model');
+	var $has_many = array('product');
 	
 //	var $validation = array(
 //		'example' => array(
@@ -23,7 +23,23 @@ class Feature extends DataMapper {
 	 */
     function __construct($id = NULL)
 	{
-		parent::__construct($id);
+		parent::__construct($id);        
+    }
+    public function get_short_info($id = false){
+        if($id)
+            $this->get_by_id($id);
+        else{
+            $this->get();
+            $this->id = null;
+        }
+    }
+    public function get_full_info($id = false){
+        if($id)
+            $this->get_by_id($id);
+        else{
+            $this->get();
+            $this->id = null;
+        }
     }
 }
 
