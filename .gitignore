@@ -1,5 +1,13 @@
 application/config/database.php
+
 application/config/config.php
+
 application/NetBeansAutoComplite.php
+<<<<<<< HEAD
 public_html/images/photo
+=======
+
+public_html/images/photo/model_sets/cache/*
+
+>>>>>>> c43ed3835c05fc1748c7ebc4347873d79aaa6ac7
 logs

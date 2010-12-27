@@ -1,4 +1,4 @@
-<div id='top_menu' class='span-24'>
+<div id='top_menu' class='span-24 shadow'>
 	<ul>
 		<li><a href='#'>Home</a></li>
 		<li><a href='#'>Sunglasses</a></li>
