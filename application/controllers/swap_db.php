@@ -241,8 +241,8 @@ class Swap_db extends MY_Controller {
             
     }
     public function get_content(){
-        $sunglass_query = $this->db->select('model, image_url, image_front_url, models.id')
-                            ->join('models','models.name = sunglasshut.model')                            
+        $sunglass_query = $this->db->select('model, image_url, image_front_url, products.id')
+                            ->join('products','products.name = sunglasshut.model')                            
                             ->get('sunglasshut')->result();
         
         foreach($sunglass_query as $row){

@@ -3,6 +3,7 @@
 class Linker {
     public function __construct(){        
     }
+    
     public function home_page(){
         $segments = array('home');
         $url = generate_url($segments);
@@ -15,6 +16,12 @@ class Linker {
     }
     public function products_show($product_id,$set_id = false){
         $segments = array('products', 'show', $product_id, $set_id);
+        $url = generate_url($segments);
+        return $url;
+    }
+    
+    public function stores_show($store_id){
+        $segments = array('stores', 'show', $store_id);
         $url = generate_url($segments);
         return $url;
     }
