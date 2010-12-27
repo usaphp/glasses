@@ -1,4 +1,8 @@
 application/config/database.php
+
 application/config/config.php
+
 application/NetBeansAutoComplite.php
+
+public_html/images/photo/model_sets/cache/*
 logs
