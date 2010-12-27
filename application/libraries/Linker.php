@@ -53,4 +53,34 @@ class Linker {
         $url = generate_url($segments);
         return $url;
     }
+    public function a_features_show(){
+        $segments = array('admin', 'features', 'show');
+        $url = generate_url($segments);
+        return $url;
+    }
+    public function a_features_edit($feature_id = false){
+        $segments = array('admin', 'features', 'edit', $feature_id);
+        $url = generate_url($segments);
+        return $url;
+    }
+    public function a_frame_materials_show(){
+        $segments = array('admin', 'frame_materials', 'show');
+        $url = generate_url($segments);
+        return $url;
+    }
+    public function a_frame_materials_edit($frame_material_id = false){
+        $segments = array('admin', 'frame_materials', 'edit', $frame_material_id);
+        $url = generate_url($segments);
+        return $url;
+    }
+    public function a_lense_materials_show(){
+        $segments = array('admin', 'lense_materials', 'show');
+        $url = generate_url($segments);
+        return $url;
+    }
+    public function a_lense_materials_edit($lense_material_id = false){
+        $segments = array('admin', 'lense_materials', 'edit', $lense_material_id);
+        $url = generate_url($segments);
+        return $url;
+    }
 }

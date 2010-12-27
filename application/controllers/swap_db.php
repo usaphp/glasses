@@ -265,7 +265,7 @@ class Swap_db extends MY_Controller {
                 file_put_contents($abs_path.$image_front_name,$image);
                 echo $image_front_name;
             }
-            print_flex($row);                        
+            print_flex($row);
         }
     }
 }

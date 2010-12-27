@@ -1,10 +1,10 @@
 <?php
 
-class Brands extends Admin_Controller {
+class Frame_materials extends Admin_Controller {
 	function __construct()
 	{
 		parent::__construct();
-        $this->main_model = new Brand();             	
+        $this->main_model = new Frame_material();             	
 	}
 	
 	function index()

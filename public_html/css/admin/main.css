@@ -1,6 +1,6 @@
 /*Top Menu*/
     #top_menu{}
-        #top_menu li{float:left; margin: 10px 20px;}
+        #top_menu li{float:left; margin: 10px 5px;}
         .sub_menu li{}
 /*FORM*/
     .f_joined { float:left; margin-right:10px; width:200px;}

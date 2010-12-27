@@ -4,17 +4,14 @@ class Features extends Admin_Controller {
 
 	function __construct()
 	{
-		parent::__construct();	
+		parent::__construct();
+        $this->main_model = new Feature();
 	}
 	
-	function index()
-	{
-		
+	function index(){
+	   $this->show();	
 	}
     
-    function edit(){
-        
-    }
 }
 
 /* End of file welcome.php */

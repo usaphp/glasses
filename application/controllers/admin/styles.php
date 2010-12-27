@@ -5,18 +5,14 @@ class Styles extends Admin_Controller {
 	function __construct()
 	{
 		parent::__construct();	
-	}
+        $this->main_model = new Style();
+    }
 	
 	function index()
 	{
-		
+		$this->show();
 	}
     
-    function edit()
-    {
-        $m = new M();
-             
-    }
 }
 
 /* End of file welcome.php */
