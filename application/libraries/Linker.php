@@ -19,6 +19,13 @@ class Linker {
         return $url;
     }
     
+	public function brand($brand_id){
+        $segments = array('brand', $brand_id);
+        $url = generate_url($segments);
+        return $url;
+	}
+	
+	/* Admin links */
     public function a_products_edit($product_id = false){
         $segments = array('admin', 'products', 'edit', $product_id);
         $url = generate_url($segments);

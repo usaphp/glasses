@@ -31,6 +31,18 @@ h2.topped { margin-top:20px; }
 .breadcrumbs_top { list-style:none; float:left; margin:15px 0px; }
 	.breadcrumbs_top li { float:left; font-size:11px; }
 		.breadcrumbs_top li a, .breadcrumbs_top li span{ padding:0px 3px; }
+/* Home page */
+	/* Popup menu */
+		/* Brands */
+		.popup_menu_wrapper { background:#f6f6f6; padding:20px 0px; }
+			.popup_menu_wrapper ul { float:left; list-style:none; margin:0px 0px 0px 40px; }
+			.popup_menu_link { display:block; padding:3px 5px; color:#1A1A1A; text-decoration:none; width:140px; }
+			.popup_menu_link:hover { background:#515151; color:#fff; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; }
+	/* Social block */
+.hp_social_block { border-top:1px dashed #c8c8c8; padding-top:10px; }
+	.hp_social_block_1 { padding:10px 20px 0px 0px; border-right:1px dashed #c8c8c8; }
+	.hp_social_block_2 { padding:10px 20px 0px 20px; }
+	.hp_social_block_3 { padding:10px 0px 0px 20px; border-left:1px dashed #c8c8c8;  }
 /* Product info */
 .product_info_wrapper { background:#fff; }
 	h1.product_name { font-size:20px; font-weight:bold; margin-top:15px; border-bottom:1px dotted #e0e0e0; padding-bottom:10px; }
@@ -86,6 +98,7 @@ h2.topped { margin-top:20px; }
 /* All around cornered */
 .c-normal { border-radius: 7px; -webkit-border-radius: 7px; -moz-border-radius: 7px; }
 .c-small { border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; }
+.c-tiny { border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; }
 /* Bottom cornered */
 .cb-normal { -moz-border-radius-bottomleft: 7px; -moz-border-radius-bottomright: 7px; 
   border-bottom-left-radius:7px; border-bottom-right-radius:7px; 
