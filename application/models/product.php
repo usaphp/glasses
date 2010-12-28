@@ -47,20 +47,24 @@ class Product extends DataMapper{
                     ->get_by_id($id);
             $this->set->include_related('frame_color')
                         ->include_related('lense_color')->get();
-            $this->store->include_join_fields()->get();
+            $this->store->include_join_fields()->get();            
             $this->feature->include_join_fields()->get();
+            foreach($this->store as $store){
+                $store->review->get_short_info();
+                $store->coupon->get_short_info();
+            }
         }else{
             $this->include_related('brand')
                     ->include_related('frame_material')
                     ->include_related('lense_material')
                     ->include_related('style')->get();
-            
-            $this->set->include_related('frame_color')
+            foreach($this as $product){
+                $product->feature->include_join_fields()->get();
+                $this->set->include_related('frame_color')
                         ->include_related('frame_color')
                         ->get();
-            $this->store->include_join_fields()->get();            
-            foreach($this as $product)
-                $product->feature->include_join_fields()->get();            
+                $this->store->include_join_fields()->get();
+            }            
         }
     }
 

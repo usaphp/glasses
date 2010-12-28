@@ -55,5 +55,12 @@ define('IMAGE_SIZE_TINY', 'tiny');
 define('IMAGE_SIZE_SMALL', 'small');
 define('IMAGE_SIZE_MEDIUM', 'medium');
 define('IMAGE_SIZE_LARGE', 'large');
+/*
+|--------------------------------------------------------------------------
+|Coupon 
+|--------------------------------------------------------------------------
+*/
+define('COUPON_TYPE_ABSOLUTE_TOKEN','$');
+define('COUPON_TYPE_PERCENT_TOKEN','%');
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

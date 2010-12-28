@@ -1,16 +1,17 @@
 <?php
 
-class Brands extends Admin_Controller {
+class Stores extends MY_Controller {
+
 	function __construct()
 	{
-		parent::__construct();
-        $this->main_model = new Brand();             	
+		parent::__construct();	
 	}
 	
 	function index()
 	{
-		$this->show();
+        $this->show();	   
 	}
+        
 }
 
 /* End of file welcome.php */

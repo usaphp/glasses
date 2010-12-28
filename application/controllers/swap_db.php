@@ -5,6 +5,7 @@ class Swap_db extends MY_Controller {
 	function __construct(){
 		parent::__construct();	
         set_time_limit(5000);
+        
 	}
 	
 	function index(){
@@ -240,9 +241,9 @@ class Swap_db extends MY_Controller {
 //                            ->update('models_stores', array('page_url'=>$set->page_url));
             
     }
-    public function get_content(){
-        $sunglass_query = $this->db->select('model, image_url, image_front_url, models.id')
-                            ->join('models','models.name = sunglasshut.model')                            
+    public function get_images(){
+        $sunglass_query = $this->db->select('model, image_url, image_front_url, products.id')
+                            ->join('products','products.name = sunglasshut.model')                            
                             ->get('sunglasshut')->result();
         
         foreach($sunglass_query as $row){
@@ -265,8 +266,15 @@ class Swap_db extends MY_Controller {
                 file_put_contents($abs_path.$image_front_name,$image);
                 echo $image_front_name;
             }
-            print_flex($row);                        
+            print_flex($row);
         }
+    }
+    public function get_content(){
+        $image = file_get_contents('http://www.ogame.ru');
+        
+        $dom = new DomDocument();
+        $res = $dom->loadHTML($image);
+        print_flex($dom);
     }
 }
 
