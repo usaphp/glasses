@@ -52,10 +52,20 @@
         	<?php $odd_even = ($odd_even == 'odd')?'even':'odd';?>
     		<tr class='<?php echo $odd_even; ?>'>
     			<td><a href='#' class='pt_store_name'><?php echo ucwords($store->name); ?></a></td>
-    			<td><div class='temp_5_star'><?php echo round($store->review->rating); ?></div><?php echo anchor($this->linker->stores_show($store->id),$store->review->reviews,'class="pt_store_ratings_link"');?></td>
+    			<td>
+                    <div class='temp_5_star'><?php echo round($store->review->rating); ?></div>
+                    <?php echo anchor($this->linker->stores_show($store->id),$store->review->reviews,'class="pt_store_ratings_link"');?>
+                </td>
     			<td><span class='pt_shipping_tax'><?php echo ($store->tax + $store->shipping);?></span></td>
-    			<td><a href='#' class='pt_coupon_code c-small'><?php echo $store->coupon->name;?></a><span class='pt_coupon_discount'><?php echo $store->coupon->value.' '.$this->config->item('coupon',$store->coupon->type);?>10% Off (-$12,99)</span></td>
-    			<td class='td_number'><span class='pt_base_price'>$<?php echo $store->join_price ?></span></td>
+    			<td>
+                    <a href='#' class='pt_coupon_code c-small'><?php echo $store->coupon_best->name;?></a>
+                    <span class='pt_coupon_discount'>
+                        <?php echo $store->coupon_best->calculate->get_price($store->join_price);?>
+                    </span>
+                </td>
+    			<td class='td_number'>
+                    <span class='pt_base_price'>$<?php echo $store->join_price ?></span>
+                </td>
     			<td class='td_number'><a href='#' class='pt_total_price'>$<?php echo number_format($store->join_price + 8, 2) ?></a></td>
     		</tr>
     		<?php } ?>
@@ -126,6 +136,7 @@
 				<div class='clear'></div>
 			</li>
 		</ul>
+    <?php endforeach;?> 
 	<div class='clear'></div>
 	<h2>Collection Description</h2>
 	<p>The Fendi sun and ophthalmic collections are not to be missed - luxurious and ultra-feminine - these styles will bring out the glamour in everyone. The new Fendi sun shields and rimless styles, in the season’s leading fashion color stories, incorporate the Fendi logo in innovative new ways and are distinctively Fendi. The plastics are rich and sensual - made even more luxurious with the addition of rhinestones. The ophthalmics appeal to both the trendy and classic Fendi consumers, with beautiful detailing, coloring, and feminine eyeshapes.</p>

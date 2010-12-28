@@ -3,7 +3,7 @@
 /**
 *
 * 
- */
+*/
 class Store extends DataMapper {
 	
 	var $has_one = array();
