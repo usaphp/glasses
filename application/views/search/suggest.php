@@ -1,6 +1,6 @@
 <?php foreach($items['text'] as $key => $item):?>
     <li> 
-        <a href="<?php echo $items['text'][$key] ?>">
+        <a href="<?php echo $items['page_url'][$key] ?>">
             <span style="float: left;">
                 <?php echo $items['text'][$key];?>
             </span>
