@@ -51,6 +51,7 @@ define('SORT_BY_LENSE', 9);
 |--------------------------------------------------------------------------
 */
 define('IMAGE_CAT_MODEL_SET', 'image_model_set');
+define('IMAGE_CAT_BRAND', 'image_band');
 define('IMAGE_SIZE_TINY', 'tiny');
 define('IMAGE_SIZE_SMALL', 'small');
 define('IMAGE_SIZE_MEDIUM', 'medium');

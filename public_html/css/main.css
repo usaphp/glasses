@@ -26,6 +26,8 @@ h2.topped { margin-top:20px; }
 		#top_menu ul li { float:left; width:165px; margin-right:1px; }
 		#top_menu ul li a { display:block;   background:#f1f1f1; text-align:center; padding:8px 0px; color:#000; font-size:14px; text-transform:uppercase; text-decoration:none; }
 		#top_menu ul .tm_last  { width:168px; margin:0px; }
+/*Search */
+    #search_suggest { list-style:none; background:#fff; border:1px solid; border-color:#fff #c8c8c8 #c8c8c8 #e7e7e7; border-top:none; margin:0px; }
 
 /* Breadcrumbs */
 .breadcrumbs_top { list-style:none; float:left; margin:15px 0px; }

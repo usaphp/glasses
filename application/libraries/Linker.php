@@ -14,17 +14,24 @@ class Linker {
         $url = generate_url($segments);
         return $url;
     }
-    public function products_show($product_id,$set_id = false){
+    public function product_show($product_id,$set_id = false){
         $segments = array('products', 'show', $product_id, $set_id);
         $url = generate_url($segments);
         return $url;
     }
     
-	public function brand($brand_id){
-        $segments = array('brand', $brand_id);
+	public function brand_show($brand_id){
+        $segments = array('catalog', 'show', 1, SORT_BY_BRAND);
         $url = generate_url($segments);
         return $url;
 	}
+    public function style_show($style_id){
+        $segments = array('catalog', 'show', 1, SORT_BY_STYLE);
+        $url = generate_url($segments);
+        return $url;
+	}
+    
+    
 	
 	/* Admin links */
     public function stores_show($store_id){

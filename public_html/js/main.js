@@ -1,5 +1,6 @@
 ﻿function main(){
-    main.prototype.products_show_init = function(){
+    
+    main.prototype.search_init = function(){
     // key pressed in search input
         $('#main_search_input').keyup(function(e){
             
@@ -43,12 +44,9 @@
                 
                 if(use_suggest)
                 {
-	                $.each(response.items, function(index, value)
-                    {
-                        $('#search_suggest').append($('<li>').html($('<span>').html(value.text)));
-					});
+                    $('#search_suggest').html(response.items);
 					// if results = 0 hide the suggest box
-					if(response.products.length) $('#search_suggest').show();
+					if(response.items.length) $('#search_suggest').show();
 					else $('#search_suggest').hide();
 				}
                 
@@ -56,4 +54,5 @@
             }            
         });
     }
+    main.prototype.products_show_init = function(){}
 }

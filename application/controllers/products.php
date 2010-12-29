@@ -29,10 +29,10 @@ class Products extends MY_Controller {
         $sets->where_related($product)->get_short_info();
         #MAIN IMAGE
         $this->data['images_path']      = array();
-        $this->data['images_path'][]    = $main_image_url = $this->picture->make_image($product->set->image, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_LARGE);        
+        $this->data['images_path'][]    = $this->picture->make_image($product->set->image, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_LARGE);        
         #IMAGE
         foreach($product->set->set_image as $image)
-            $this->data['images_path'][] = $main_image_url = $this->picture->make_image($image->name, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_SMALL);
+            $this->data['images_path'][] = $this->picture->make_image($image->name, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_SMALL);
         #best Price
         foreach($product->store as $store){
             $this->_get_best_price($store);
@@ -42,7 +42,7 @@ class Products extends MY_Controller {
         $this->data['dm_set_selected']      = $product->set;        
         $this->data['dm_sets']              = $sets;
         
-        $this->template->load('/templates/main_template', 'products/show', $this->data);
+        $this->template->load('/templates/main_template', 'product/show', $this->data);
     }
     
     private function _get_best_price($store)

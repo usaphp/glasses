@@ -24,5 +24,6 @@
 	</div>
     
 	<div class='span-4 last'></div>
-    <ul id='search_suggest' style='display:none;'></ul>
+    
 </div>
+<ul id='search_suggest' style='display:none;'></ul>

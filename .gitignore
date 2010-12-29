@@ -1,10 +1,6 @@
 application/config/database.php
-
-
 application/config/config.php
-
-
+application/config/config-migaz.php
 application/NetBeansAutoComplite.php
-
 public_html/images/photo/*
 logs

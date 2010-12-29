@@ -247,7 +247,7 @@ class Swap_db extends MY_Controller {
                             ->get('sunglasshut')->result();
         
         foreach($sunglass_query as $row){
-            $abs_path = 'C:\xampp\projects\migaz\public_html\images\photo\model_sets\\';
+            $abs_path = 'E:\xampp\project\migaz\public_html\images\photo\model_sets\\';
             #IMAGE
             $url_image_array = explode('/',$row->image_url);            
             $image_name = current(explode('?',$url_image_array[6])).'.png';

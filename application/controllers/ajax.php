@@ -19,25 +19,32 @@ class Ajax extends MY_Controller {
         $styles->like('name', $query_string, 'after')->limit(5)->get_short_info();
         $products->like('name', $query_string, 'after')->limit(5)->get_short_info();
         #!
+        $data['items']= array();
+        $data['items']['text']= array(); 
         foreach($brands as $brand)
         {
-            $return_arr['items']['text'][]      = $query_string.'<strong>'.(str_ireplace($query_string,'',$brand->name)).'</strong>';
-            $return_arr['items']['image_url'][] = $this->config->item('brand_image_url').$brand->image;
-            $return_arr['items']['type'][]      = 'brand';
+            $data['items']['text'][]      = $query_string.'<strong>'.(str_ireplace($query_string,'',$brand->name)).'</strong>';
+            $data['items']['page_url'][]  = $this->linker->brand_show($brand->id);
+            $data['items']['image_url'][] = $this->picture->make_image($brand->image, IMAGE_CAT_BRAND, IMAGE_SIZE_TINY);
+            $data['items']['type'][]      = 'brand';
         }
         foreach($styles as $style)
         {
-            $return_arr['items']['text'][]      = $query_string.'<strong>'.(str_ireplace($query_string,'',$style->name)).'</strong>';
-            $return_arr['items']['image_url'][] = $this->config->item('style_image_url').$style->image;
-            $return_arr['items']['type'][]      = 'style';
+            $data['items']['text'][]      = $query_string.'<strong>'.(str_ireplace($query_string,'',$style->name)).'</strong>';
+            $data['items']['page_url'][]  = $this->linker->style_show($style->id);
+            $data['items']['image_url'][] = $this->config->item('style_image_url').$style->image;
+            $data['items']['type'][]      = 'style';
         }
         foreach($products as $product)
         {
-            $return_arr['items']['text'][]      = $query_string.'<strong>'.(str_ireplace($query_string,'',$product->name)).'</strong>';
-            $return_arr['items']['image_url'][] = $this->config->item('product_image_url').$product->image;
-            $return_arr['items']['type'][]      = 'product';
+            $data['items']['text'][]      = $query_string.'<strong>'.(str_ireplace($query_string,'',$product->name)).'</strong>';
+            $data['items']['page_url'][]  = $this->linker->product_show($product->id);
+            
+            $data['items']['image_url'][] = $this->picture->make_image($product->image, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_TINY);
+            $data['items']['type'][]      = 'product';
         }
-                
+        $return_arr['items'] = $this->load->view('search/suggest',$data,true);
+        #print_flex($data['items']);
         $return_arr['status'] = true;
         echo json_encode($return_arr);
         return ;
