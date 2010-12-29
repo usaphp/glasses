@@ -31,7 +31,7 @@ class Coupon extends DataMapper {
     {        
         if($id)
         {
-            $this->get_by_id($id);
+            is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
             $this->calculate = SelectedCouponType::get_method_calculate($this);
         }
         else
@@ -51,7 +51,7 @@ class Coupon extends DataMapper {
     
     public function get_full_info($id = false){
         if($id){
-            $this->get_by_id($id);
+            is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
             $this->calculate = SelectedCouponType::get_method_calculate($this);
         }else{
             $this->get();

@@ -27,7 +27,7 @@ class Frame_material extends DataMapper {
     
     public function get_short_info($id = false){
         if($id)
-            $this->get_by_id($id);
+            is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
         else{
             $this->get();
             $this->id = null;
@@ -36,7 +36,7 @@ class Frame_material extends DataMapper {
     
     public function get_full_info($id = false){
         if($id)
-            $this->get_by_id($id);
+            is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
         else{
             $this->get();
             $this->id = null;

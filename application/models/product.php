@@ -32,8 +32,10 @@ class Product extends DataMapper{
                 ->include_related('frame_material')
                 ->include_related('lense_material')
                 ->include_related('style');
-        if($id) $this->get_by_id($id);
-        else $this->get();
+        if($id)
+            is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
+        else 
+            $this->get();
     }
     
     public function get_full_info($id = false){
@@ -44,7 +46,7 @@ class Product extends DataMapper{
                 ->include_related('lense_material')
                 ->include_related('style');
         if($id){
-            $this->get_by_id($id);
+            is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
             $this->set->include_related('frame_color')
                         ->include_related('lense_color')->get();
             $this->store->include_join_fields()->get();            

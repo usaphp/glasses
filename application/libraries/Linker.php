@@ -20,18 +20,29 @@ class Linker {
         return $url;
     }
     
+    public function type_show($type_id){
+        $segments = array('catalog', 'show', $type_id);
+        $url = generate_url($segments);
+        return $url;
+	}
+    
 	public function brand_show($brand_id){
-        $segments = array('catalog', 'show', 1, SORT_BY_BRAND);
+        $segments = array('catalog', 'show', false, $brand_id);
         $url = generate_url($segments);
         return $url;
 	}
+    
+    public function gender_show($gender_id){
+        $segments = array('catalog', 'show', false, false, $gender_id);
+        $url = generate_url($segments);
+        return $url;
+	}
+    
     public function style_show($style_id){
-        $segments = array('catalog', 'show', 1, SORT_BY_STYLE);
+        $segments = array('catalog', 'show', false, false, false, $style_id);
         $url = generate_url($segments);
         return $url;
 	}
-    
-    
 	
 	/* Admin links */
     public function stores_show($store_id){
