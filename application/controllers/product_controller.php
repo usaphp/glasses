@@ -1,6 +1,6 @@
 <?php
 
-class Products extends MY_Controller {
+class Product_controller extends MY_Controller {
 
 	function __construct()
 	{

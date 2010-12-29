@@ -6,7 +6,7 @@
  */
 class Product extends DataMapper{
 	
-	var $has_one = array('brand', 'frame_material', 'lense_material', 'style');
+	var $has_one = array('brand', 'frame_material', 'lense_material', 'style', 'type', 'gender');
 
 	var $has_many = array('set','store','feature');
 	
@@ -26,25 +26,25 @@ class Product extends DataMapper{
     }
     
     public function get_short_info($id = false){
-        if($id)
-            $this->include_related('brand')
-                    ->include_related('frame_material')
-                    ->include_related('lense_material')
-                    ->include_related('style')->get_by_id($id);
-        else
-            $this->include_related('brand')
-                    ->include_related('frame_material')
-                    ->include_related('lense_material')
-                    ->include_related('style')->get();
+        $this->include_related('brand')
+                ->include_related('type')
+                ->include_related('gender')
+                ->include_related('frame_material')
+                ->include_related('lense_material')
+                ->include_related('style');
+        if($id) $this->get_by_id($id);
+        else $this->get();
     }
     
     public function get_full_info($id = false){
+        $this->include_related('brand')
+                ->include_related('type')
+                ->include_related('gender')
+                ->include_related('frame_material')
+                ->include_related('lense_material')
+                ->include_related('style');
         if($id){
-            $this->include_related('brand')
-                    ->include_related('frame_material')
-                    ->include_related('lense_material')
-                    ->include_related('style')
-                    ->get_by_id($id);
+            $this->get_by_id($id);
             $this->set->include_related('frame_color')
                         ->include_related('lense_color')->get();
             $this->store->include_join_fields()->get();            
@@ -54,10 +54,7 @@ class Product extends DataMapper{
                 $store->coupon->get_short_info();
             }
         }else{
-            $this->include_related('brand')
-                    ->include_related('frame_material')
-                    ->include_related('lense_material')
-                    ->include_related('style')->get();
+            $this->get();
             foreach($this as $product){
                 $product->feature->include_join_fields()->get();
                 $this->set->include_related('frame_color')
