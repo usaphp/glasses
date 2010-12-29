@@ -77,34 +77,35 @@ class SelectedCouponType{
 }
 
 abstract class CouponType{
-    protected $type_int;
-    protected $type_str;
+    protected $description;
     protected $value;    
-    function __construct($model){
-        $this->type_int = $model->type;
+    function __construct($model){        
         $this->value    = $model->value;        
     }
     
-    abstract public function get_price($price);    
+    abstract public function get_price($price);
+    public function get_description()
+    {
+        return $this->description;    
+    }    
 }
 
 class CouponAbs extends CouponType{
     function __construct($model){
         parent::__construct($model);
-        $this->type_str = COUPON_TYPE_ABSOLUTE_TOKEN;
+        $this->description = '$'.$this->value;
     }
     
-    public function get_price($price){
-        
+    public function get_price($price)
+    {
         return $price - $this->value;
     }
-    
 }
 
 class CouponPct extends CouponType{
     function __construct($model){
         parent::__construct($model);
-        $this->type_str = COUPON_TYPE_PERCENT_TOKEN;
+        $this->description = $this->value.'%';
     }
     
     public function get_price($price){        
@@ -114,13 +115,12 @@ class CouponPct extends CouponType{
 }
 class CouponNull extends CouponType{
     function __construct($model){
-           $this->type_str = 'nettu';
+           $this->description = '';
     }
     
     public function get_price($price){        
         return $price;
     }
-
 }
 
 /* End of file template.php */

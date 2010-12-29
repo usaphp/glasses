@@ -60,13 +60,13 @@
     			<td>
                     <a href='#' class='pt_coupon_code c-small'><?php echo $store->coupon_best->name;?></a>
                     <span class='pt_coupon_discount'>
-                        <?php echo $store->coupon_best->calculate->get_price($store->join_price);?>
+                        <?php echo $store->coupon_best->calculate->get_description().' Off';?>
                     </span>
                 </td>
     			<td class='td_number'>
-                    <span class='pt_base_price'>$<?php echo $store->join_price ?></span>
+                    <span class='pt_base_price'>$<?php echo $store->join_price; ?></span>
                 </td>
-    			<td class='td_number'><a href='#' class='pt_total_price'>$<?php echo number_format($store->join_price + 8, 2) ?></a></td>
+    			<td class='td_number'><a href='#' class='pt_total_price'>$<?php echo $store->coupon_best->calculate->get_price($store->join_price); ?></a></td>
     		</tr>
     		<?php } ?>
     	</tbody>

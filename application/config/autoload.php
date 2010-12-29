@@ -78,7 +78,7 @@ $autoload['plugin'] = array();
 |
 */
 
-$autoload['config'] = array('config','picture', 'migaz_config');
+$autoload['config'] = array('config','picture');
 
 
 /*
