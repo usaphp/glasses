@@ -22,7 +22,7 @@
 		    <div class='p_color_sets_wrapper'>
 		    <?php foreach($dm_sets as $set){?>
 		    	<?php $selected = ($dm_product_selected->set->id == $set->id)?'selected':''; ?>
-		        <a href="<?php echo $this->linker->products_show($dm_product_selected->id, $set->id);?>" class='p_color_set_link <?php echo $selected; ?>'>                    
+		        <a href="<?php echo $this->linker->product_show($dm_product_selected->id, $set->id);?>" class='p_color_set_link <?php echo $selected; ?>'>                    
 		            <span style = "background:#<?php echo $set->frame_color_hex; ?>;">&nbsp;</span>
 		            <span style = "background:#<?php echo $set->lense_color_hex; ?>;">&nbsp;</span>
 		        </a>
