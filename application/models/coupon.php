@@ -24,7 +24,7 @@ class Coupon extends DataMapper {
     function __construct($id = NULL)
 	{
 		parent::__construct($id);
-        
+        $this->calculate = SelectedCouponType::get_method_calculate($this);
     }
     
     public function get_short_info($id = false)
@@ -37,31 +37,20 @@ class Coupon extends DataMapper {
         else
         {            
             $this->get();
-            $this->id = null;
-            foreach($this as $elem){
+            foreach($this as $elem)
                 $elem->calculate = SelectedCouponType::get_method_calculate($elem);
-            }
-            
-            if (!$this->exists()){ 
-                $this->calculate = SelectedCouponType::get_method_calculate($this);
-                $this->all[] = $this;
-            }
+            $this->id = null;
         }
     }
     
     public function get_full_info($id = false){
-        if($id){
+        if($id)
+        {
             is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
-            $this->calculate = SelectedCouponType::get_method_calculate($this);
-        }else{
+        }
+        else
+        {
             $this->get();
-            foreach($this as $elem){
-                $elem->calculate = SelectedCouponType::get_method_calculate($elem);
-            }
-            if (!$this->exists()){ 
-                $this->calculate = SelectedCouponType::get_method_calculate($this);
-                $this->all[] = $this;
-            }
             $this->id = null;
         }        
     }

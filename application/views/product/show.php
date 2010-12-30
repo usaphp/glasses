@@ -17,7 +17,7 @@
     </div>
     <div class='span-16 last'>
         <div class='p_right'>
-	    	<h2 class='p_best_price'>Best Price: <a href="<?php echo $best_price->join_page_url;?>"><?php echo '$'.$best_price->join_price;?></a><?php echo 'at '.$best_price->name;?></h2>
+	    	<h2 class='p_best_price'>Best Price: <a href="<?php echo $best_store->join_page_url;?>"><?php echo '$'.$best_store->price;?></a><?php echo 'at '.$best_store->name;?></h2>
 	        <h2>Color Options</h2>
 		    <div class='p_color_sets_wrapper'>
 		    <?php foreach($dm_sets as $set){?>
