@@ -36,8 +36,16 @@ class Product_controller extends MY_Controller {
         #best Price
         foreach($product->store as $store){
             $this->_get_best_price($store);
-            #print_flex($store->coupon_best);
         }
+        
+        #best Stores        
+        $this->_get_best_store_by_price($product);
+        #features
+        $features_cout = $product->feature->result_count()/2;
+        if ($features_cout < 2) $features_cout = 1;
+        $feature_fields = array_chunk($product->feature->all_to_array(),$features_cout);
+        
+        $this->data['feature_fields']       = $feature_fields;
         $this->data['dm_product_selected']  = $product;        
         $this->data['dm_set_selected']      = $product->set;        
         $this->data['dm_sets']              = $sets;
@@ -47,22 +55,27 @@ class Product_controller extends MY_Controller {
     
     private function _get_best_price($store)
     {
-        $best_price = $store->join_price;
+        #$store->best_coupon = $store->coupon->all[0];
         
         foreach($store->coupon as $coupon)
         {
-            $price_by_coupon = $coupon->calculate->get_price($store->join_price);
-            #print_flex($price_by_coupon);
-            if($best_price >= $price_by_coupon) 
+            if($store->best_coupon->calculate->get_price() < $coupon->calculate->get_price($store->join_price)) 
             {
-                $best_price = $price_by_coupon;
-                echo $best_price;
-                $store->coupon_best = $coupon;
+                $store->best_coupon = $coupon;
+                print_flex($store->best_coupon->calculate);
             } 
-                
         }
-        
     }
+    
+    private function _get_best_store_by_price($product)
+    {
+        foreach($product->store as $store)
+        {
+            if ($store->best_coupon->calculate->get_price() < $product->best_store)
+                $product->best_store = $store;
+        }    
+    }
+
 }
 
 /* End of file welcome.php */

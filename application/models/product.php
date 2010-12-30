@@ -49,8 +49,8 @@ class Product extends DataMapper{
             is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
             $this->set->include_related('frame_color')
                         ->include_related('lense_color')->get();
-            $this->store->include_join_fields()->get();            
-            $this->feature->include_join_fields()->get();
+            $this->store->include_join_fields()->get_short_info();            
+            $this->feature->include_join_fields()->get_short_info();
             foreach($this->store as $store){
                 $store->review->get_short_info();
                 $store->coupon->get_short_info();

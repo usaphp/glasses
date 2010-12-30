@@ -58,15 +58,15 @@
                 </td>
     			<td><span class='pt_shipping_tax'><?php echo ($store->tax + $store->shipping);?></span></td>
     			<td>
-                    <a href='#' class='pt_coupon_code c-small'><?php echo $store->coupon_best->name;?></a>
+                    <a href='#' class='pt_coupon_code c-small'><?php echo $store->best_coupon->name;?></a>
                     <span class='pt_coupon_discount'>
-                        <?php echo $store->coupon_best->calculate->get_description().' Off';?>
+                        <?php echo $store->best_coupon->calculate->get_description().' Off';?>
                     </span>
                 </td>
     			<td class='td_number'>
                     <span class='pt_base_price'>$<?php echo $store->join_price; ?></span>
                 </td>
-    			<td class='td_number'><a href='#' class='pt_total_price'>$<?php echo $store->coupon_best->calculate->get_price($store->join_price); ?></a></td>
+    			<td class='td_number'><a href='#' class='pt_total_price'>$<?php echo $store->best_coupon->calculate->get_price($store->join_price); ?></a></td>
     		</tr>
     		<?php } ?>
     	</tbody>
@@ -104,39 +104,19 @@
     </div>
     <div class='clear'></div>
 	<h2 class='topped'>Product Features</h2>
-    <?php foreach($dm_product_selected->feature as $feature):?>
-		<ul class='product_features'>
-        <?php for($i = 0;$i>$dm_product_selected->feature->result_count;$i++):?>
+    <?php 
+    foreach($feature_fields as $features):
+    ?>	
+        <ul class='product_features'>
+        <?php foreach($features as $feature):?>
 			<li>
 				<img src='/images/features/<?php echo $feature->image;?>'/>
-				<p><strong><?php echo $feature->name;?></strong><?php echo $feature->description;?></p>
+				<p><strong><?php echo $feature['name'];?></strong><?php echo $feature['description'];?></p>
 				<div class='clear'> </div>
 			</li>
-        <?php endfor;?>
+        <?php endforeach;?>
 		</ul>
-		<ul class='product_features'>
-			<li>
-				<img src='/images/features/flex.png'/>
-				<p><strong>Flexon Bridge</strong>Bridges made from memory metal, which consists mainly of Nickel, Titanium and other trace elements</p>
-				<div class='clear'></div>
-			</li>
-			<li>
-				<img src='/images/features/flex.png'/>
-				<p><strong>Flexon Bridge</strong>Bridges made from memory metal, which consists mainly of Nickel, Titanium and other trace elements</p>
-				<div class='clear'></div>
-			</li>
-			<li>
-				<img src='/images/features/flex.png'/>
-				<p><strong>Flexon Bridge</strong>Bridges made from memory metal, which consists mainly of Nickel, Titanium and other trace elements</p>
-				<div class='clear'></div>
-			</li>
-			<li>
-				<img src='/images/features/flex.png'/>
-				<p><strong>Flexon Bridge</strong>Bridges made from memory metal, which consists mainly of Nickel, Titanium and other trace elements</p>
-				<div class='clear'></div>
-			</li>
-		</ul>
-    <?php endforeach;?> 
+	<?php endforeach; ?>
 	<div class='clear'></div>
 	<h2>Collection Description</h2>
 	<p>The Fendi sun and ophthalmic collections are not to be missed - luxurious and ultra-feminine - these styles will bring out the glamour in everyone. The new Fendi sun shields and rimless styles, in the season’s leading fashion color stories, incorporate the Fendi logo in innovative new ways and are distinctively Fendi. The plastics are rich and sensual - made even more luxurious with the addition of rhinestones. The ophthalmics appeal to both the trendy and classic Fendi consumers, with beautiful detailing, coloring, and feminine eyeshapes.</p>

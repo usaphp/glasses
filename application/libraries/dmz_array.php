@@ -129,6 +129,77 @@ class DMZ_Array {
 	}
 	
 }
-
+   class SelectedCouponType{
+        public static function get_method_calculate($model){
+            if($model->type == false) return new CouponNull($model);
+            if($model->type == 1) return new CouponAbs($model);
+            if($model->type == 2) return new CouponPct($model);
+        }
+    }
+    
+    abstract class CouponType {
+        
+        protected $description;
+        protected $value;
+        protected $price;    
+        
+        function __construct($model)
+        {        
+            $this->value = $model->value;
+            $this->price = false;        
+        }
+        
+        abstract protected function _calculate($price);
+        
+        public function get_price($price = false)
+        {
+            if($price) $this->_calculate($price);
+            
+            if($this->price)
+                return $this->price;
+            return false;
+        }
+        
+        public function get_description()
+        {
+            return $this->description;    
+        }    
+    }
+    
+    class CouponAbs extends CouponType{
+        function __construct($model){
+            parent::__construct($model);
+            $this->description = '$'.$this->value;
+        }
+        
+        protected function _calculate ($price)
+        {
+            $this->price = $price - $this->value;
+        }
+    }
+    
+    class CouponPct extends CouponType{
+        
+        function __construct($model)
+        {
+            parent::__construct($model);
+            $this->description = $this->value.'%';
+        }
+        
+        protected function _calculate($price)
+        {        
+            $this->price = $price-($price*($this->value/100));
+        }
+    
+    }
+    class CouponNull extends CouponType{
+        function __construct($model){
+               $this->description = '';
+        }
+        
+        protected function _calculate($price){        
+            $this->price = $price;
+        }
+    }
 /* End of file array.php */
 /* Location: ./application/datamapper/array.php */

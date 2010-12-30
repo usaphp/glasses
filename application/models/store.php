@@ -27,19 +27,31 @@ class Store extends DataMapper {
     }
     
     public function get_short_info($id = false){        
-        if($id)
+        if($id){
             is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
+            $this->best_coupon = SelectedCouponType::get_method_calculate();
+        }
         else{            
             $this->get();
+            foreach($this as $store){                
+                $store->best_coupon = $store->coupon; 
+                $store->best_coupon->calculate  = SelectedCouponType::get_method_calculate($store->coupon);
+            }
             $this->id = null;
         }
     }
     
     public function get_full_info($id = false){
-        if($id)
+        if($id){
             is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
+            $this->best_coupon =  
+            SelectedCouponType::get_method_calculate();
+        }
         else{
             $this->get();
+            foreach($this as $store){
+                $this->best_coupon = SelectedCouponType::get_method_calculate();
+            }
             $this->id = null;
         }
     }
