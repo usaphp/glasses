@@ -24,7 +24,7 @@ class Coupon extends DataMapper {
     function __construct($id = NULL)
 	{
 		parent::__construct($id);
-        
+        $this->calculate = SelectedCouponType::get_method_calculate($this);
     }
     
     public function get_short_info($id = false)
@@ -37,90 +37,24 @@ class Coupon extends DataMapper {
         else
         {            
             $this->get();
-            $this->id = null;
-            foreach($this as $elem){
+            foreach($this as $elem)
                 $elem->calculate = SelectedCouponType::get_method_calculate($elem);
-            }
-            
-            if (!$this->exists()){ 
-                $this->calculate = SelectedCouponType::get_method_calculate($this);
-                $this->all[] = $this;
-            }
+            $this->id = null;
         }
     }
     
     public function get_full_info($id = false){
-        if($id){
+        if($id)
+        {
             is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
-            $this->calculate = SelectedCouponType::get_method_calculate($this);
-        }else{
+        }
+        else
+        {
             $this->get();
-            foreach($this as $elem){
-                $elem->calculate = SelectedCouponType::get_method_calculate($elem);
-            }
-            if (!$this->exists()){ 
-                $this->calculate = SelectedCouponType::get_method_calculate($this);
-                $this->all[] = $this;
-            }
             $this->id = null;
         }        
     }
     
-}
-
-class SelectedCouponType{
-    public static function get_method_calculate($model){
-        if($model->type == false) return new CouponNull($model);
-        if($model->type == 1) return new CouponAbs($model);
-        if($model->type == 2) return new CouponPct($model);
-    }
-}
-
-abstract class CouponType{
-    protected $description;
-    protected $value;    
-    function __construct($model){        
-        $this->value    = $model->value;        
-    }
-    
-    abstract public function get_price($price);
-    public function get_description()
-    {
-        return $this->description;    
-    }    
-}
-
-class CouponAbs extends CouponType{
-    function __construct($model){
-        parent::__construct($model);
-        $this->description = '$'.$this->value;
-    }
-    
-    public function get_price($price)
-    {
-        return $price - $this->value;
-    }
-}
-
-class CouponPct extends CouponType{
-    function __construct($model){
-        parent::__construct($model);
-        $this->description = $this->value.'%';
-    }
-    
-    public function get_price($price){        
-        return $price-($price*($this->value/100));
-    }
-
-}
-class CouponNull extends CouponType{
-    function __construct($model){
-           $this->description = '';
-    }
-    
-    public function get_price($price){        
-        return $price;
-    }
 }
 
 /* End of file template.php */

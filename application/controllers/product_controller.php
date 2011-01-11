@@ -35,33 +35,23 @@ class Product_controller extends MY_Controller {
             $this->data['images_path'][] = $this->picture->make_image($image->name, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_SMALL);
         #best Price
         foreach($product->store as $store){
-            $this->_get_best_price($store);
-            #print_flex($store->coupon_best);
+            $store->get_best_coupon();
         }
+        #best Store
+        $product->get_best_store();
+        
+        $features_cout = $product->feature->result_count()/2;
+        if ($features_cout < 2) $features_cout = 1;
+        $feature_fields = array_chunk($product->feature->all_to_array(),$features_cout);
+        
+        $this->data['feature_fields']       = $feature_fields;
+        $this->data['best_store']           = $product->best_store;
+        $this->data['best_store']->price    = $product->best_store->best_coupon->calculate->get_price();
         $this->data['dm_product_selected']  = $product;        
         $this->data['dm_set_selected']      = $product->set;        
         $this->data['dm_sets']              = $sets;
         
         $this->template->load('/templates/main_template', 'product/show', $this->data);
-    }
-    
-    private function _get_best_price($store)
-    {
-        $best_price = $store->join_price;
-        
-        foreach($store->coupon as $coupon)
-        {
-            $price_by_coupon = $coupon->calculate->get_price($store->join_price);
-            #print_flex($price_by_coupon);
-            if($best_price >= $price_by_coupon) 
-            {
-                $best_price = $price_by_coupon;
-                echo $best_price;
-                $store->coupon_best = $coupon;
-            } 
-                
-        }
-        
     }
 }
 

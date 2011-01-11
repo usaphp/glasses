@@ -95,7 +95,7 @@ h2.topped { margin-top:20px; }
 	/* Features */
 	.product_features { list-style:none; display:block; float:left; font-size:11px; margin:15px 40px 15px 40px; }	
 		.product_features img { display:block; float:left; }
-		.product_features p { float:left; width:250px; margin-left:5px; }
+		.product_features p { float:left; width:240px; margin-left:5px; }
 			.product_features p strong { display:block; }
 		
 .pagination{}

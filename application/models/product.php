@@ -23,6 +23,7 @@ class Product extends DataMapper{
     */
     function __construct($id = NULL){
 		parent::__construct($id);
+        $this->best_store = $this->store;
     }
     
     public function get_short_info($id = false){
@@ -48,9 +49,9 @@ class Product extends DataMapper{
         if($id){
             is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
             $this->set->include_related('frame_color')
-                        ->include_related('lense_color')->get();
-            $this->store->include_join_fields()->get();            
-            $this->feature->include_join_fields()->get();
+                        ->include_related('lense_color')->get();                     
+            $this->store->include_join_fields()->get_short_info();                        
+            $this->feature->include_join_fields()->get_short_info();            
             foreach($this->store as $store){
                 $store->review->get_short_info();
                 $store->coupon->get_short_info();
@@ -64,6 +65,17 @@ class Product extends DataMapper{
                         ->get();
                 $this->store->include_join_fields()->get();
             }            
+        }
+    }
+    
+    public function get_best_store()
+    {
+        foreach($this->store as $store)
+        {
+            if ($this->best_store->best_coupon->calculate->get_price() > $store->best_coupon->calculate->get_price() or !$this->best_store->best_coupon->calculate->get_price())
+            {
+                $this->best_store = $store;
+            }
         }
     }
 
