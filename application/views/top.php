@@ -19,11 +19,12 @@
                 echo anchor('#','Search',array('class' => 'top_search_link'));
 			?>
             </div>
+			<div class='clear'></div>
 		</form>
         <?php echo form_close(); ?>
+        <ul id='search_suggest' style='display:none;'></ul>
 	</div>
     
 	<div class='span-4 last'></div>
     
 </div>
-<ul id='search_suggest' style='display:none;'></ul>

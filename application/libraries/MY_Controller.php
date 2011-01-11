@@ -36,8 +36,13 @@ class MY_Controller extends Controller {
         parent::__construct();        
         $this->data                     = array();
         $this->data['js_functions']     = array();
-        $this->data['js_functions'][]   = array('name' => 'search_init', 'data' => FALSE);
+        $this->data['js_functions'][]   = array('name' => 'search_init', 'data' => FALSE, 'name' => 'top_menu_init', 'data' => FALSE);
         $this->data['crumbs']           = array();
+		
+		$brands = new Brand();
+		$brands->get_short_info();
+		$this->data['dm_brands'] = $brands;
+		
         $this->output->enable_profiler(TRUE);
     }    
 }

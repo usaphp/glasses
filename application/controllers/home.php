@@ -9,11 +9,6 @@ class Home extends MY_Controller {
 	
 	function index()
 	{
-		$brands = new Brand();
-		$brands->get_short_info();
-		
-		
-		$this->data['dm_brands'] = $brands;
         $this->template->load('/templates/home_page_template', 'home/roller',$this->data);
 	}
 }

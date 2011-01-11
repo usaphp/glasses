@@ -34,4 +34,15 @@
         return rtrim($root,"/");
     }
 	# return date
+	
+	function get_current_filters($off = FALSE){
+		$filter = array();
+		$CI = & get_instance();
+		if($CI->router->fetch_class() != 'catalog' || $off) return array('type' => 'a', 'brand' => 'a', 'gender' => 'a', 'style' => 'a');
+		$filter['type'] = $CI->uri->rsegment(3)?$CI->uri->rsegment(3):'a';
+		$filter['brand'] = $CI->uri->rsegment(4)?$CI->uri->rsegment(4):'a';
+		$filter['gender'] = $CI->uri->rsegment(5)?$CI->uri->rsegment(5):'a';
+		$filter['style'] = $CI->uri->rsegment(6)?$CI->uri->rsegment(6):'a';
+		return $filter;
+	}
 ?>

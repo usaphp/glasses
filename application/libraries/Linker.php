@@ -5,7 +5,7 @@ class Linker {
     }
     
     public function home_page(){
-        $segments = array('home');
+        $segments = array();
         $url = generate_url($segments);
         return $url;
     }
@@ -15,31 +15,35 @@ class Linker {
         return $url;
     }
     public function product_show($product_id,$set_id = false){
-        $segments = array('products', 'show', $product_id, $set_id);
+        $segments = array('product', 'show', $product_id, $set_id);
         $url = generate_url($segments);
         return $url;
     }
     
-    public function type_show($type_id){
-        $segments = array('catalog', 'show', $type_id);
+    public function type_show($type){
+    	$filter = get_current_filters();
+        $segments = array('catalog', 'show', $type, $filter['brand'], $filter['gender'], $filter['style']);
         $url = generate_url($segments);
         return $url;
 	}
     
-	public function brand_show($brand_id){
-        $segments = array('catalog', 'show', false, $brand_id);
+	public function brand_show($brand, $off = FALSE){
+    	$filter = get_current_filters($off);
+        $segments = array('catalog', 'show', $filter['type'], $brand, $filter['gender'], $filter['style']);
         $url = generate_url($segments);
         return $url;
 	}
     
     public function gender_show($gender_id){
-        $segments = array('catalog', 'show', false, false, $gender_id);
+    	$filter = get_current_filters();
+        $segments = array('catalog', 'show', $filter['type'], $filter['brand'], $gender_id, $filter['style']);
         $url = generate_url($segments);
         return $url;
 	}
     
     public function style_show($style_id){
-        $segments = array('catalog', 'show', false, false, false, $style_id);
+    	$filter = get_current_filters();
+        $segments = array('catalog', 'show', $filter['type'], $filter['brand'], $filter['gender'], $style_id);
         $url = generate_url($segments);
         return $url;
 	}

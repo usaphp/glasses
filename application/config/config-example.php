@@ -23,7 +23,7 @@ $config['admin_url']    = $config['base_url']."admin/";
 | variable so that it is blank.
 |
 */
-$config['index_page'] = "index.php";
+$config['index_page'] = "";
 
 /*
 |--------------------------------------------------------------------------

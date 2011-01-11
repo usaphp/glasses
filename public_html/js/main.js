@@ -54,5 +54,13 @@
             }            
         });
     }
+    main.prototype.top_menu_init = function(){
+    	$('.tm_item').hover(function(){
+			$(this).find('.tm_sub_wrapper').show();
+    	},function(){
+			$(this).find('.tm_sub_wrapper').hide();
+    	});
+    }
+    
     main.prototype.products_show_init = function(){}
 }
