@@ -90,8 +90,11 @@ h2.topped { margin-top:20px; }
 		.product_information li span { color:#000000; }
 	/* Frames size */
 	.frame_size_explain { float:left; margin-left:50px; }
-	.p_frame_size_picture { width:200px; height:145px; background:url('/images/layout/frame_sizes.png') center center no-repeat; font-size:10px; }
+	.p_frame_size_picture { width:200px; height:160px; background:url('/images/layout/frame_sizes.png') 0px 20px no-repeat; font-size:10px; }
 		.p_frame_size_picture span { font-weight:bold; display:block; }
+		.pfs_eye { padding-left:88px; padding-top:65px; }
+		.pfs_temple { padding-left:10px;  }
+		.pfs_bridge { padding-left:140px; }
 	/* Features */
 	.product_features { list-style:none; display:block; float:left; font-size:11px; margin:15px 40px 15px 40px; }	
 		.product_features img { display:block; float:left; }

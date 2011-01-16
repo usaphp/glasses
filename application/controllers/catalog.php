@@ -7,42 +7,59 @@
     	
     	function index(){
             $this->show();
+			array_push($this->data['crumbs'], array('name' => 'Home', 'link' => $this->linker->home_page()));
     	}
-        public function show($type = 'a', $brand = 'a', $gender = 'a', $style = 'a', $page_number = 1, $sort_by = SORT_BY_MODEL){
+		
+        public function show($conditions = ''){
         	
+			# Add breadcrumbs
+			array_push($this->data['crumbs'], array('name' => 'Catalog', 'link' => $this->linker->catalog_show()));
+			
+			parse_str($conditions, $vars);
             $products = new Product();
-			
-			if($type != 'a'){
+			if(isset($vars['type'])){
 				$type_model = new Type;
-				$type_model->where('name', $type)->get();
-				if($type_model->exists()) $products->where_related($type_model);
+				$type_model->where('name', $vars['type'])->get();
+				if($type_model->exists()){
+					$products->where_related($type_model);	
+					array_push($this->data['crumbs'], array('name' => $type_model->name, 'link' => $this->linker->type_show($type_model->name, TRUE)));
+				} 
 			}
 			
-			if($brand != 'a'){
+			if(isset($vars['brand'])){
 				$brand_model = new Brand;
-				$brand_model->where('name', $brand)->get();
-		        if($brand_model->exists()) $products->where_related($brand_model);
+				$brand_id = preg_replace('/.*\-(\d+)/iU', '$1', $vars['brand']);
+				$brand_model->where('id', $brand_id)->get();
+				if($brand_model->exists()){
+					$products->where_related($brand_model);	
+					array_push($this->data['crumbs'], array('name' => $brand_model->name, 'link' => $this->linker->type_show($brand_model->id, TRUE)));
+				} 
 			}
 			
-			if($gender != 'a'){
+			if(isset($vars['gender'])){
 				$gender_model = new Gender;
-				$gender_model->where('name', $gender)->get();
-		        if($gender_model->exists()) $products->where_related($gender_model);
+				$gender_model->where('name', $vars['gender'])->get();
+				if($gender_model->exists()){
+					$products->where_related($gender_model);	
+					array_push($this->data['crumbs'], array('name' => $gender_model->name, 'link' => $this->linker->type_show($gender_model->name, TRUE)));
+				} 
 			}
 			
-			if($style != 'a'){
+			if(isset($vars['style'])){
 				$style_model = new Style;
-				$style_model->where('name', $style)->get();
-		        if($style_model->exists()) $products->where_related($style_model);
+				$style_model->where('name', $vars['style'])->get();
+				if($style_model->exists()){
+					$products->where_related($style_model);	
+					array_push($this->data['crumbs'], array('name' => $style_model->name, 'link' => $this->linker->type_show($style_model->id, TRUE)));
+				} 
 			}
 			
 			
-            $limit  = 10;
-            $offset = (($page_number-1) * 10);
-            #$models_old = $this->db->select()->limit($limit,$offset)->get('sunglasshut')->result();            
+			$products_count = $products->get_clone();
+			$total_products = $products_count->count_short_info();
 			
-				
-            switch($sort_by){
+			$sort_by = isset($vars['sort_by'])?$vars['sort_by']:SORT_BY_MODEL;
+			switch($sort_by){
                 case SORT_BY_MODEL:
                     $products->order_by('name');
                 case SORT_BY_BRAND:
@@ -54,10 +71,19 @@
                 case SORT_BY_LENSE:
                     $products->order_by('lense_material_name');
             }
+			
+			$limit = 10;
+			$page_number = isset($vars['page'])?$vars['page']:1;
+			$offset = ($page_number-1)*10;
+			
+			
             $products->limit($limit,$offset)->get_short_info();
-
+			
+			// remove link from last breadcrumb
+			$this->data['crumbs'][count($this->data['crumbs'])-1]['link'] = FALSE;
+			
             $this->data['dm_products']    = $products;
-            $this->data['page_count']   = $products->count()/$limit;
+            $this->data['page_count']   = $total_products/$limit + 1;
             $this->data['page_current'] = $page_number;
             $this->data['sort_by']      = $sort_by;            
             $this->template->load('/templates/main_template', 'catalog/show',$this->data);

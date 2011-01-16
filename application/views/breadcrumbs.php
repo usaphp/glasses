@@ -1,8 +1,19 @@
+<?php if(count($crumbs) > 0): ?>
 <div>
 	<ul class='breadcrumbs_top'>
-		<li><a href='#'>Home</a>&gt;</li>
-		<li><a href='#'>Sunglasses</a>&gt;</li>
-		<li><a href='#'>Oakley</a>&gt;</li>
-		<li><span href='#'>OO9102 HOLBROOK</span></li>
+		<?php foreach($crumbs as $crumb): ?>
+			<li>
+				<?php 
+					# crumb link is not false then show it as "a" tag 
+					if($crumb['link']): 
+						echo anchor($crumb['link'], ucwords($crumb['name']), array('class' => 'crumb')). '&gt;';
+					else: 
+						echo '<span>'.ucwords($crumb['name']).'</span>';
+					endif;
+				?>
+			</li>
+		<?php endforeach; ?>
 	</ul>
+	<div class='clear'></div>
 </div>
+<?php endif; ?>
