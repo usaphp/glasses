@@ -1598,7 +1598,7 @@ class CF_Object
      * @param string $name name of Object
      * @param boolean $force_exists if set, throw an error if Object doesn't exist
      */
-    function __construct(&$container, $name, $force_exists=False, $dohead=True)
+    function __construct(&$container, $name, $force_exists=False, $dohead=FALSE)
     {
         if ($name[0] == "/") {
             $r = "Object name '".$name;
