@@ -8,8 +8,9 @@ class Sunglasshut extends MY_Controller {
         
 	}
 	
-	function load_images(){
+	function load_images($limit = FALSE){
         $sunglasses = $this->db->select('model, image_url, image_front_url, products.id, upc')
+							->limit($limit)
                             ->get('sunglasshut')->result();
 		$this->load->library('cf/cfiles');
 		$this->load->library('image_lib');
