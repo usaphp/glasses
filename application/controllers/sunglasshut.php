@@ -14,7 +14,7 @@ class Sunglasshut extends MY_Controller {
 							->limit(1)                            
                             ->get('sunglasshut')->result();
 		print_flex($sunglasses);
-		$this->load->library('s3');
+		$this->load->library('cf/cfiles');
 		$this->load->library('image_lib');
 		foreach($sunglasses as $row){
 			$original = file_get_contents($row->image_url);
@@ -44,17 +44,29 @@ class Sunglasshut extends MY_Controller {
 			$this->image_lib->resize();
 			$large = file_get_contents($config['new_image']);
 			
-			$amazon_file_name = 'photos/original/'.$row->upc.'.png';
-			$this->s3->putObject($original, 'migaz', $amazon_file_name, S3::ACL_PUBLIC_READ);
+			/* ORIGINAL */
+			$this->cfiles->cf_folder = 'photos/original/';
+			$file_location = unslashed_root().'/images/temp/original/';
+	        
+			$this->cfiles->do_object('a', $file_name, $file_location);
 			
-			$amazon_file_name = 'photos/small/'.$row->upc.'.png';
-			$this->s3->putObject($small, 'migaz', $amazon_file_name, S3::ACL_PUBLIC_READ);
+			/* LARGE */
+			$this->cfiles->cf_folder = 'photos/large/';
+			$file_location = unslashed_root().'/images/temp/large/';
+	        
+			$this->cfiles->do_object('a', $file_name, $file_location);
 			
-			$amazon_file_name = 'photos/medium/'.$row->upc.'.png';
-			$this->s3->putObject($medium, 'migaz', $amazon_file_name, S3::ACL_PUBLIC_READ);
+			/* MEDIUM */
+			$this->cfiles->cf_folder = 'photos/medium/';
+			$file_location = unslashed_root().'/images/temp/medium/';
+	        
+			$this->cfiles->do_object('a', $file_name, $file_location);
 			
-			$amazon_file_name = 'photos/large/'.$row->upc.'.png';
-			$this->s3->putObject($large, 'migaz', $amazon_file_name, S3::ACL_PUBLIC_READ);
+			/* SMALL */
+			$this->cfiles->cf_folder = 'photos/small/';
+			$file_location = unslashed_root().'/images/temp/small/';
+	        
+			$this->cfiles->do_object('a', $file_name, $file_location);
 		}
 	}
 }
