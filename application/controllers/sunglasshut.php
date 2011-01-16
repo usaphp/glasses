@@ -10,7 +10,6 @@ class Sunglasshut extends MY_Controller {
 	
 	function load_images(){
         $sunglasses = $this->db->select('model, image_url, image_front_url, products.id, upc')
-                            ->join('products','products.name = sunglasshut.model')
                             ->get('sunglasshut')->result();
 		$this->load->library('cf/cfiles');
 		$this->load->library('image_lib');
