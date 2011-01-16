@@ -20,9 +20,8 @@ class Sunglasshut extends MY_Controller {
 			$file_dir = slashed_root().'images/temp/original/'.$file_name;
 			
 			$cdn_file_name = 'photos/original/'.$file_name;
-	        
-			$object = $this->cfiles->get_object($cdn_file_name);
-			if($object) {
+			
+	        if (false === file_get_contents(CDN_SERVER.$cdn_file_name,0,null,0,1)) {
 				echo 'skip<br/>';
 				continue;
 			}
