@@ -11,7 +11,7 @@ class Sunglasshut extends MY_Controller {
 	function load_images(){
         $sunglasses = $this->db->select('model, image_url, image_front_url, products.id, upc')
                             ->join('products','products.name = sunglasshut.model')
-							->limit(1)                            
+							->limit()                            
                             ->get('sunglasshut')->result();
 		print_flex($sunglasses);
 		$this->load->library('cf/cfiles');
@@ -49,24 +49,28 @@ class Sunglasshut extends MY_Controller {
 			$file_location = unslashed_root().'/images/temp/original/';
 	        
 			$this->cfiles->do_object('a', $file_name, $file_location);
+			unlink($file_location.$file_name);
 			
 			/* LARGE */
 			$this->cfiles->cf_folder = 'photos/large/';
 			$file_location = unslashed_root().'/images/temp/large/';
 	        
 			$this->cfiles->do_object('a', $file_name, $file_location);
+			unlink($file_location.$file_name);
 			
 			/* MEDIUM */
 			$this->cfiles->cf_folder = 'photos/medium/';
 			$file_location = unslashed_root().'/images/temp/medium/';
 	        
 			$this->cfiles->do_object('a', $file_name, $file_location);
+			unlink($file_location.$file_name);
 			
 			/* SMALL */
 			$this->cfiles->cf_folder = 'photos/small/';
 			$file_location = unslashed_root().'/images/temp/small/';
 	        
 			$this->cfiles->do_object('a', $file_name, $file_location);
+			unlink($file_location.$file_name);
 		}
 	}
 }

@@ -7,11 +7,14 @@
         <img src="<?php echo $this->picture->make_image($dm_product_selected->set->image, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_MEDIUM); ?>"/>
         
         <div class="set_images">
+        	<img src='http://c0180890.cdn1.cloudfiles.rackspacecloud.com/photos/medium/<?php echo $dm_sets[0]->upc; ?>.png'/>
         <?php
+        /*
             foreach($dm_product_selected->set->set_image as $set_image){
                 echo '<img src="'.$this->picture->make_image($set_image->name, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_TINY).'"/>';   
-            }    
-        ?>
+            }
+		*/
+		?>
         </div>
         </div>
     </div>
