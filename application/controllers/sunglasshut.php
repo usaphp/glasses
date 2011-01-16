@@ -17,9 +17,10 @@ class Sunglasshut extends MY_Controller {
 		$this->load->library('cf/cfiles');
 		$this->load->library('image_lib');
 		foreach($sunglasses as $row){
-			$original = file_get_contents($row->image_url);
 			$file_name = $row->upc.'.png';
 			$file_dir = slashed_root().'images/temp/original/'.$file_name;
+			if(file_exists($file_dir)) continue;
+			$original = file_get_contents($row->image_url);
 			file_put_contents($file_dir, $original);
 			
 			$config = array();
