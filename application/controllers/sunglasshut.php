@@ -11,15 +11,17 @@ class Sunglasshut extends MY_Controller {
 	function load_images(){
         $sunglasses = $this->db->select('model, image_url, image_front_url, products.id, upc')
                             ->join('products','products.name = sunglasshut.model')
-							->limit()                            
                             ->get('sunglasshut')->result();
-		print_flex($sunglasses);
 		$this->load->library('cf/cfiles');
 		$this->load->library('image_lib');
 		foreach($sunglasses as $row){
+			echo $row->upc.'<br/>';
 			$file_name = $row->upc.'.png';
 			$file_dir = slashed_root().'images/temp/original/'.$file_name;
-			if(file_exists($file_dir)) continue;
+			if(file_exists($file_dir)) {
+				echo 'skip<br/>';
+				continue;
+			}
 			$original = file_get_contents($row->image_url);
 			file_put_contents($file_dir, $original);
 			
