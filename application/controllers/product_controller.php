@@ -29,10 +29,10 @@ class Product_controller extends MY_Controller {
         $sets->where_related($product)->get_short_info();
         #MAIN IMAGE
         $this->data['images_path']      = array();
-        $this->data['images_path'][]    = $this->picture->make_image($product->set->image, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_LARGE);        
+        #$this->data['images_path'][]    = $this->picture->make_image($product->set->image, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_LARGE);        
         #IMAGE
-        foreach($product->set->set_image as $image)
-            $this->data['images_path'][] = $this->picture->make_image($image->name, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_SMALL);
+        #foreach($product->set->set_image as $image)
+            #$this->data['images_path'][] = $this->picture->make_image($image->name, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_SMALL);
         #best Price
         foreach($product->store as $store){
             $store->get_best_coupon();

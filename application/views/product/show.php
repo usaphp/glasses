@@ -4,10 +4,9 @@
 
     <div class="span-8">
     	<div class='p_left'>
-        <img src="<?php echo $this->picture->make_image($dm_product_selected->set->image, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_MEDIUM); ?>"/>
+        	<img src='http://c0180890.cdn1.cloudfiles.rackspacecloud.com/photos/medium/<?php echo $dm_product_selected->set->upc; ?>.png'/>
         
         <div class="set_images">
-        	<img src='http://c0180890.cdn1.cloudfiles.rackspacecloud.com/photos/medium/<?php echo $dm_sets[0]->upc; ?>.png'/>
         <?php
         /*
             foreach($dm_product_selected->set->set_image as $set_image){
