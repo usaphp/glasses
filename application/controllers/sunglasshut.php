@@ -21,7 +21,7 @@ class Sunglasshut extends MY_Controller {
 			
 			$cdn_file_name = 'photos/original/'.$file_name;
 			echo CDN_SERVER.$cdn_file_name.'<br/>';
-	        if (false === file_get_contents(CDN_SERVER.$cdn_file_name,0,null,0,1)) {
+	        if (file_get_contents(CDN_SERVER.$cdn_file_name,0,null,0,1)) {
 				echo 'skip<br/>';
 				continue;
 			}
