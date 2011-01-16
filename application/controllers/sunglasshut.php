@@ -18,7 +18,11 @@ class Sunglasshut extends MY_Controller {
 			echo $row->upc.'<br/>';
 			$file_name = $row->upc.'.png';
 			$file_dir = slashed_root().'images/temp/original/'.$file_name;
-			if(file_exists($file_dir)) {
+			
+			$cdn_file_name = 'photos/original/'.$file_name;
+	        
+			$object = $this->cfiles->get_object($cdn_file_name);
+			if($object) {
 				echo 'skip<br/>';
 				continue;
 			}
