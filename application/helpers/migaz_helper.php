@@ -41,4 +41,31 @@
 		parse_str($CI->uri->rsegment(3), $filter);
 		return $filter;
 	}
+	
+	/* checkes if the remote file exists */
+	function remote_file_exists($url) {
+	    $curl = curl_init($url);
+	
+	    //don't fetch the actual page, you only want to check the connection is ok
+	    curl_setopt($curl, CURLOPT_NOBODY, TRUE);
+	
+	    //do request
+	    $result = curl_exec($curl);
+	
+	    $ret = FALSE;
+	
+	    //if request did not fail
+	    if ($result !== FALSE) {
+	        //if request was ok, check response code
+	        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);  
+	
+	        if ($statusCode == 200) {
+	            $ret = TRUE;   
+	        }
+	    }
+	
+	    curl_close($curl);
+	
+	    return $ret;
+	}
 ?>

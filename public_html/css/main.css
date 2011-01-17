@@ -23,10 +23,10 @@ h2.topped { margin-top:20px; }
 /* Top menu */
 #top_menu { margin:40px 0px 10px; }
 	.top_menu_ul { list-style:none; float:left; margin:0px; position:relative; }
-		.top_menu_ul li.tm_item { float:left; width:165px; margin-right:1px; }
-		.top_menu_ul li.tm_item a.tm_link { display:block;   background:#f1f1f1; text-align:center; padding:8px 0px; color:#000; font-size:14px; text-transform:uppercase; text-decoration:none; height:20px; text-shadow:1px 1px #fff; }
+		.top_menu_ul li.tm_item { float:left; width:141px; margin-right:1px; }
+		.top_menu_ul li.tm_item a.tm_link { display:block;   background:#f1f1f1; text-align:center; padding:8px 0px; color:#000; font-size:12px; text-transform:uppercase; text-decoration:none; height:20px; text-shadow:1px 1px #fff; }
 		.top_menu_ul li.tm_item a.tm_link:hover { background:#e1e1e1; }
-		.top_menu_ul .tm_last  { width:168px!important; margin-right:0px!important; }
+		.top_menu_ul .tm_last  { width:146px!important; margin-right:0px!important; }
 	.tm_sub_wrapper { display:none;  position:absolute; left:0px; top:36px; background:#e6e6e6; padding:20px 0px; width:998px; border-top:2px solid #d1d1d1; }
 		.tm_sub_wrapper ul { float:left; list-style:none; margin:0px 0px 0px 40px; border-right:1px dotted #f7f7f7;  }
 			.tm_sub_link { display:block; padding:3px 5px; color:#3d3d3d; text-shadow:1px 1px #fff; text-decoration:none; width:140px; }

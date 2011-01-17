@@ -5,7 +5,8 @@ class Sunglasshut extends MY_Controller {
 	function __construct(){
 		parent::__construct();	
         set_time_limit(0);
-        
+        ini_set('memory_limit', '512M');
+		$this->output->enable_profiler(FALSE);
 	}
 	
 	function load_images($limit = FALSE, $offset = FALSE){
@@ -21,7 +22,7 @@ class Sunglasshut extends MY_Controller {
 			
 			$cdn_file_name = 'photos/original/'.$file_name;
 			echo CDN_SERVER.$cdn_file_name.'<br/>';
-	        if (file_get_contents(CDN_SERVER.$cdn_file_name,0,null,0,1)) {
+	        if (remote_file_exists(CDN_SERVER.$cdn_file_name)) {
 				echo 'skip<br/>';
 				continue;
 			}
