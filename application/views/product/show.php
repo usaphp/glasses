@@ -1,4 +1,12 @@
-
+<?php
+    $rdo_rating = array(
+        'name'      => '',
+        'value'     => '',
+        'id'        => '',        
+        'class'     => 'star {split:2}',
+        'disabled'  => 'disabled' 
+    )
+?>
 <div class="span-24 product_info_wrapper">
  	<h1 class='product_name'><?php echo $dm_product_selected->brand_name.' '.$dm_product_selected->name.' '.$dm_product_selected->type_name;?></h1>
 
@@ -55,8 +63,30 @@
     		<tr class='<?php echo $odd_even; ?>'>
     			<td><a href='#' class='pt_store_name'><?php echo ucwords($store->name); ?></a></td>
     			<td>
-                    <div class='temp_5_star'><?php echo round($store->review->rating); ?></div>
-                    <?php echo anchor($this->linker->stores_show($store->id),$store->review->reviews,'class="pt_store_ratings_link"');?>
+                
+                <?php            
+                $rdo_rating['name'] = 'star'.$store->id;
+                #каждый рейтинг должен быть в своей форме для js
+                #имя у группы inputoв должно быть одинаковым - star#
+                echo form_open('#', array('name'=>$rdo_rating['name']));
+                    #10 radiobutton по 2 на каждую звезду 
+                    for($i=1;$i<=10;$i++)
+                    {
+                        #значения содержат имя и номер радиобат. для передачи в js
+                        $rdo_rating['value']= $rdo_rating['name'].'_'.$i;
+                        #если средний рейтинг совподает с номером радиобат. 
+                        #он отмечается
+                        if((int)round($store->review->rating) == $i)
+                            $rdo_rating['checked'] = 'checked';
+                        else
+                            $rdo_rating['checked'] = '';
+                        
+                        echo form_radio($rdo_rating);
+                    }
+                echo form_close();
+                ?>
+                
+                <?php echo anchor($this->linker->stores_show($store->id),$store->review->reviews,'class="pt_store_ratings_link"');?>    
                 </td>
     			<td><span class='pt_shipping_tax'><?php echo ($store->tax + $store->shipping);?></span></td>
     			<td>

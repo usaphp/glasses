@@ -54,7 +54,8 @@
             }            
         });
     }
-    main.prototype.top_menu_init = function(){
+    main.prototype.top_menu_init = function()
+    {
     	$('.tm_item').hover(function(){
 			$(this).find('.tm_sub_wrapper').show();
     	},function(){
@@ -62,5 +63,40 @@
     	});
     }
     
-    main.prototype.products_show_init = function(){}
+    main.prototype.product_show_init = function()
+    {
+        
+    }
+    
+    main.prototype.swap_db_edit_init = function()
+    {
+        $('.select_tables').change(function(){            
+            var table_selected = $(this);
+            $.ajax({
+                url : '/admin/swap_db/ajax_table_selected',
+                data : { 'table_selected' : table_selected.val()},
+                type : 'post',
+                success : function(response)
+                {                
+                    $('#first_table').find('.response').html(response);
+                }
+            });
+        });
+        $('.checkbox_field').live('change',function(){
+            
+            var field_selected = $(this);
+            var node = field_selected.parent();
+            if(field_selected.is(":checked")){  
+                $.ajax({
+                    url : '/admin/swap_db/ajax_field_selected',
+                    data : { 'field_selected' : field_selected.val()},
+                    type : 'post',
+                    success : function(response)
+                    {                
+                        node.find('.response').html(response);
+                    }
+                });
+            }
+        });
+    }
 }

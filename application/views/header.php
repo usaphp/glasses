@@ -6,5 +6,6 @@
         <link rel="stylesheet" href="/css/screen.css" type="text/css"/>
     	<!--[if lt IE 8]><link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection"><![endif]--> 
         <link rel="stylesheet" href="/css/main.css" type="text/css"/>
+        <link rel="stylesheet" href="/css/jquery.rating.css" type="text/css"/>
     </head>
     <body>

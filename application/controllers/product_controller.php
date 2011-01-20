@@ -13,7 +13,7 @@ class Product_controller extends MY_Controller {
 	}
     
     function show($product_id = false, $set_id = false){
-        array_push($this->data['js_functions'], array('name' => 'products_show_init', 'data' => FALSE));
+        array_push($this->data['js_functions'], array('name' => 'product_show_init', 'data' => FALSE));
         $product = new Product();
         $sets  = new Set();
         #PRODUCT
@@ -40,9 +40,9 @@ class Product_controller extends MY_Controller {
         #best Store
         $product->get_best_store();
         
-        $features_cout = $product->feature->result_count()/2;
-        if ($features_cout < 2) $features_cout = 1;
-        $feature_fields = array_chunk($product->feature->all_to_array(),$features_cout);
+        $features_count = $product->feature->result_count()/3;
+        if ($features_count < 2) $features_count = 1;
+        $feature_fields = array_chunk($product->feature->all_to_array(),$features_count);
         
         $this->data['feature_fields']       = $feature_fields;
         $this->data['best_store']           = $product->best_store;

@@ -18,10 +18,12 @@ class Linker {
     
 	
     public function catalog_show($page_number = 1, $sort_by = SORT_BY_MODEL){
-    	$filters = get_current_filters();
+    	
+        $filters = get_current_filters();
 		$filters['page'] = $page_number;
 		$filters = array_map('clean_string', $filters);
         $segments = array('catalog', 'show', '&'.http_build_query($filters));
+
         $url = generate_url($segments, FALSE);
         return $url;
     }
