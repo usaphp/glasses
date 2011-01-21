@@ -70,33 +70,43 @@
     
     main.prototype.swap_db_edit_init = function()
     {
-        $('.select_tables').change(function(){            
-            var table_selected = $(this);
+        $('.ajax_selectbox').live('change',function(){            
+            var selected = $(this);
+            var node = selected.closest('.node');
+            console.log(node);            
             $.ajax({
-                url : '/admin/swap_db/ajax_table_selected',
-                data : { 'table_selected' : table_selected.val()},
+                url : '/admin/swap_db/ajax_' + selected.attr('name') + '_selected',
+                data : { 'selected' : selected.val(),
+                            'where_is': node.attr('id')
+                },
                 type : 'post',
                 success : function(response)
-                {                
-                    $('#first_table').find('.response').html(response);
+                {                           
+                    //console.log($(response).attr('class','.node'));
+                    node.children('.children_node').html(response);
                 }
             });
         });
-        $('.checkbox_field').live('change',function(){
-            
-            var field_selected = $(this);
-            var node = field_selected.parent();
-            if(field_selected.is(":checked")){  
+        $('.ajax_checkbox').live('change',function(){            
+            var selected = $(this);
+            var node = selected.closest('.node');
+            console.log(node);
+            if(selected.is(":checked")){  
                 $.ajax({
-                    url : '/admin/swap_db/ajax_field_selected',
-                    data : { 'field_selected' : field_selected.val()},
+                    url : '/admin/swap_db/ajax_' + selected.attr('name') + '_selected',
+                    data : { 'selected' : selected.val(),
+                                'where_is': node.attr('id')
+                    },
                     type : 'post',
                     success : function(response)
                     {                
-                        node.find('.response').html(response);
+                        //console.log($(response).attr('class','.node'));
+                        node.children('.children_node').html(response);
                     }
                 });
-            }
+            }else{
+                node.children('.children_node').html('');
+            }            
         });
     }
 }
