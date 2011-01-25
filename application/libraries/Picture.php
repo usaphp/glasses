@@ -59,5 +59,22 @@ class Picture {
         $this->CI->image_lib->clear();
 		return $cache_image;
 	}
+    public function get_source_image($image_name,$dir)
+    {
+        if(!$image_name) 
+            return 'false image_name';
+            
+        $path = $this->CI->config->item('images_'.$dir.'_path');
+        echo $this->CI->config->item('images_'.$dir.'_path');
+        if(!$path)
+            return 'false path images_'.$dir.'_path';
+             
+        $source_image = $path.$image_name;
+        
+        
+        if(file_exists($source_image))
+            return $source_image;
+        return 'false file exists';
+    }
  }
  ?>

@@ -27,12 +27,15 @@ class Brand extends DataMapper {
     }
     public function get_short_info($id = false){
         if($id)
-            is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
+            is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);        
         else{
             $this->get();
             $this->id = null;
         }
     }
+    
+    
+    
     public function get_full_info($id = false){
         if($id)
             is_numeric($id)?$this->get_by_id($id):$this->get_by_name($id);
@@ -40,6 +43,17 @@ class Brand extends DataMapper {
             $this->get();
             $this->id = null;
         }
+    }
+    
+    public function get_one($desc = false)
+    {
+        if($desc)
+            is_numeric($desc)?$this->get_by_id($desc):$this->get_by_name($desc);
+    }
+    
+    public function get_many()
+    {
+        $this->get();
     }
 }
 

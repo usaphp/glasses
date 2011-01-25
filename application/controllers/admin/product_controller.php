@@ -1,10 +1,12 @@
 <?php
 
-class Products extends Admin_Controller {
+class Product_controller extends Admin_Controller {
 
 	function __construct()
 	{
-		parent::__construct();	
+		parent::__construct();
+        $this->main_model = new Product();
+        $this->data['edit_link'] = 'a_product_edit_link';	
 	}
 	
 	function index()
@@ -12,11 +14,8 @@ class Products extends Admin_Controller {
 	   	
 	}
     
-    public function edit($model_id = false){
-        if (!$model_id) {
-            $this->show();
-            return;
-        }        
+    public function edit_old($model_id = false){
+       
         $product    = new Product();
         $brands     = new Brand();
         $styles     = new Style();
@@ -71,33 +70,33 @@ class Products extends Admin_Controller {
         #$this->data['arr_features']             = $convert_for_dropdown($features->all_to_array());
         #$this->data['arr_features_selected']    = $convert_for_dropdown($product->feature->all_to_array());
         
-        $this->template->load('/admin/templates/admin_template', 'admin/products/edit',$this->data);
+        $this->template->load('/admin/templates/admin_template', 'admin/product/edit',$this->data);
     }
     
     public function show($page_number = 1, $sort_by = SORT_BY_MODEL){
         $limit  = 10;
-        $offset = (($page_number-1) * 10);
+        $offset = (($page_number-1) * $limit);
         #$models_old = $this->db->select()->limit($limit,$offset)->get('sunglasshut')->result();            
-        $models = new Product();
+        $products = new Product();
         switch($sort_by){
             case SORT_BY_MODEL:
-                $models->order_by('name');
+                $products->order_by('name');
             case SORT_BY_BRAND:
-                $models->order_by('brand_name');
+                $products->order_by('brand_name');
             case SORT_BY_STYLE:
-                $models->order_by('style_name');
+                $products->order_by('style_name');
             case SORT_BY_FRAME:
-                $models->order_by('frame_material_name');
+                $products->order_by('frame_material_name');
             case SORT_BY_LENSE:
-                $models->order_by('lense_material_name');
+                $products->order_by('lense_material_name');
         }
-        $models->limit($limit,$offset)->get_short_info();
+        $products->limit($limit,$offset)->get_short_info();
 
-        $this->data['dm_models']    = $models;
-        $this->data['page_count']   = $models->count()/$limit;
+        $this->data['dm_products']  = $products;
+        $this->data['page_count']   = $products->count()/$limit;
         $this->data['page_current'] = $page_number;
         $this->data['sort_by']      = $sort_by;            
-        $this->template->load('admin/templates/admin_template', 'admin/products/show',$this->data);
+        $this->template->load('admin/templates/admin_template', 'admin/product/show',$this->data);
     }
     
 }

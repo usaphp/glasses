@@ -3,21 +3,22 @@
         'name'  => 'name_input',
         'value' => $dm_model->name,
         'id'    => 'name_input_id',
-        'class' => ''
+        'class' => 'f_input'
     );
     $btn_save = array(
         'name'  => 'save_button',
         'value' => 'Save',
         'id'    => 'save_button_id',
-        'class' => ''
+        'class' => 'f_button'
     );
-    $link = 'a_'.$dm_model->table.'_edit';
 ?>
 <div class="span-24">
     <div><h2><?php echo 'Edit '.$dm_model->model?></h2></div>    
-    <?php    
+    <?php
         echo form_open($this->linker->$link($dm_model->id));
+        echo form_label('Name', $inp_name['id'], array('class' => 'f_label'));
         echo form_input($inp_name);
+        
         echo form_submit($btn_save);
         echo form_close();
     ?>

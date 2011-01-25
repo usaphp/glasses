@@ -49,7 +49,17 @@ class Set extends DataMapper {
                 ->get();
             $this->set_images->get();
         }
-    }    
+    } 
+    public function get_one($desc = false)
+    {
+        if($desc)
+            is_numeric($desc)?$this->get_by_id($desc):$this->get_by_name($desc);
+    }
+    
+    public function get_many()
+    {
+        $this->get();
+    }   
 }
 
 /* End of file template.php */

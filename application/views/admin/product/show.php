@@ -1,4 +1,4 @@
-<div class="span-24">
+<div class="table_w span-24">
     <table>
         <tr>
             <th><?php echo anchor($this->linker->catalog_show($page_current, SORT_BY_BRAND),'Brand')?></th>
@@ -16,7 +16,7 @@
                 <td><?php echo $product->style_name;?></td>
                 <td><?php echo $product->frame_material_name;?></td>
                 <td><?php echo $product->lense_material_name;?></td>
-                <td><?php echo anchor($this->linker->a_products_edit($product->id),'edit');?></td>
+                <td><?php echo anchor($this->linker->a_product_edit_link($product->id),'edit');?></td>
             </tr>
         <?php endforeach;?>
     </table>

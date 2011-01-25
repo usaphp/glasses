@@ -51,66 +51,66 @@ class Linker {
         return $url;
     }
     
-    public function a_products_edit($product_id = false){
-        $segments = array('admin', 'products', 'edit', $product_id);
+    public function a_product_edit_link($product_id = false){
+        $segments = array('admin', 'product_controller', 'edit', $product_id);
         $url = generate_url($segments);
         return $url;
     }
     
-    public function a_products_show(){
-        $segments = array('admin', 'products', 'show');
+    public function a_product_show_link(){
+        $segments = array('admin', 'product_controller', 'show');
         $url = generate_url($segments);
         return $url;
     }
     
-    public function a_brands_show(){
-        $segments = array('admin', 'brands', 'show');
+    public function a_brand_show_link(){
+        $segments = array('admin', 'brand_controller', 'show');
         $url = generate_url($segments);
         return $url;
     }
     
-    public function a_brands_edit($brand_id = false){
-        $segments = array('admin', 'brands', 'edit' , $brand_id);
+    public function a_brand_edit_link($brand_id = false){
+        $segments = array('admin', 'brand_controller', 'edit' , $brand_id);
         $url = generate_url($segments);
         return $url;
     }
     
-    public function a_styles_show(){
-        $segments = array('admin', 'styles', 'show');
+    public function a_style_show_link(){
+        $segments = array('admin', 'style_controller', 'show');
         $url = generate_url($segments);
         return $url;
     }
-    public function a_styles_edit($style_id = false){
-        $segments = array('admin', 'styles', 'edit', $style_id);
+    public function a_style_edit_link($style_id = false){
+        $segments = array('admin', 'style_controller', 'edit', $style_id);
         $url = generate_url($segments);
         return $url;
     }
-    public function a_features_show(){
-        $segments = array('admin', 'features', 'show');
+    public function a_feature_show_link(){
+        $segments = array('admin', 'feature_controller', 'show');
         $url = generate_url($segments);
         return $url;
     }
-    public function a_features_edit($feature_id = false){
-        $segments = array('admin', 'features', 'edit', $feature_id);
+    public function a_feature_edit_link($feature_id = false){
+        $segments = array('admin', 'feature_controller', 'edit', $feature_id);
         $url = generate_url($segments);
         return $url;
     }
-    public function a_frame_materials_show(){
+    public function a_frame_material_show_link(){
         $segments = array('admin', 'frame_materials', 'show');
         $url = generate_url($segments);
         return $url;
     }
-    public function a_frame_materials_edit($frame_material_id = false){
+    public function a_frame_material_edit_link($frame_material_id = false){
         $segments = array('admin', 'frame_materials', 'edit', $frame_material_id);
         $url = generate_url($segments);
         return $url;
     }
-    public function a_lense_materials_show(){
+    public function a_lense_material_show_link(){
         $segments = array('admin', 'lense_materials', 'show');
         $url = generate_url($segments);
         return $url;
     }
-    public function a_lense_materials_edit($lense_material_id = false){
+    public function a_lense_material_edit_link($lense_material_id = false){
         $segments = array('admin', 'lense_materials', 'edit', $lense_material_id);
         $url = generate_url($segments);
         return $url;
