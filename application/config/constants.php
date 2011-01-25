@@ -56,6 +56,8 @@ define('IMAGE_SIZE_TINY', 'tiny');
 define('IMAGE_SIZE_SMALL', 'small');
 define('IMAGE_SIZE_MEDIUM', 'medium');
 define('IMAGE_SIZE_LARGE', 'large');
+
+define('CDN_SERVER', 'http://c0180890.cdn1.cloudfiles.rackspacecloud.com/');
 /*
 |--------------------------------------------------------------------------
 |Coupon 

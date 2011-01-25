@@ -24,14 +24,14 @@ class Ajax extends MY_Controller {
         foreach($brands as $brand)
         {
             $data['items']['text'][]      = $query_string.'<strong>'.(str_ireplace($query_string,'',$brand->name)).'</strong>';
-            $data['items']['page_url'][]  = $this->linker->brand_show($brand->id);
+            $data['items']['page_url'][]  = $this->linker->brand_show($brand->name, TRUE);
             $data['items']['image_url'][] = $this->picture->make_image($brand->image, IMAGE_CAT_BRAND, IMAGE_SIZE_TINY);
             $data['items']['type'][]      = 'brand';
         }
         foreach($styles as $style)
         {
             $data['items']['text'][]      = $query_string.'<strong>'.(str_ireplace($query_string,'',$style->name)).'</strong>';
-            $data['items']['page_url'][]  = $this->linker->style_show($style->id);
+            $data['items']['page_url'][]  = $this->linker->style_show($style->name, TRUE);
             $data['items']['image_url'][] = $this->config->item('style_image_url').$style->image;
             $data['items']['type'][]      = 'style';
         }

@@ -1,23 +1,25 @@
 
 <div class="span-24 product_info_wrapper">
- 	<h1 class='product_name'><?php echo $dm_product_selected->name;?></h1>
+ 	<h1 class='product_name'><?php echo $dm_product_selected->brand_name.' '.$dm_product_selected->name.' '.$dm_product_selected->type_name;?></h1>
 
     <div class="span-8">
     	<div class='p_left'>
-        <img src="<?php echo $this->picture->make_image($dm_product_selected->set->image, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_MEDIUM); ?>"/>
+        	<img src='http://c0180890.cdn1.cloudfiles.rackspacecloud.com/photos/medium/<?php echo $dm_product_selected->set->upc; ?>.png'/>
         
         <div class="set_images">
         <?php
+        /*
             foreach($dm_product_selected->set->set_image as $set_image){
                 echo '<img src="'.$this->picture->make_image($set_image->name, IMAGE_CAT_MODEL_SET, IMAGE_SIZE_TINY).'"/>';   
-            }    
-        ?>
+            }
+		*/
+		?>
         </div>
         </div>
     </div>
     <div class='span-16 last'>
         <div class='p_right'>
-	    	<h2 class='p_best_price'>Best Price: <a href="<?php echo $best_store->join_page_url;?>"><?php echo '$'.$best_store->price;?></a><?php echo 'at '.$best_store->name;?></h2>
+	    	<h2 class='p_best_price'>Best Price: <a href="<?php echo $best_store->join_page_url;?>"><?php echo '$'.$best_store->price;?></a> <?php echo 'at '.$best_store->name;?></h2>
 	        <h2>Color Options</h2>
 		    <div class='p_color_sets_wrapper'>
 		    <?php foreach($dm_sets as $set){?>
@@ -74,10 +76,10 @@
     <div class='f-l'>
 	    <h2 class='topped'>Product Information</h2>
 	    <ul class='product_information'>
-	    	<li>Collection: <span>Eyeglasses</span></li>
+	    	<li>Collection: <span><?php echo $dm_product_selected->type_name; ?></span></li>
 	    	<li>Brand: <span><?php echo $dm_product_selected->brand_name;?></span></li>
 	    	<li>Model: <span><?php echo $dm_product_selected->name; ?></span></li>
-	    	<li>Gender: <span></span></li>
+	    	<li>Gender: <span><?php echo $dm_product_selected->gender_name; ?></span></li>
 	    	<li>Style: <span><?php echo $dm_product_selected->style_name;?></span></li>
 	    	<li>Frame material: <span><?php echo $dm_product_selected->frame_material_name;?></span></li>
 	    	<li>Lense material: <span><?php echo  $dm_product_selected->lense_material_name;?></span></li>
@@ -97,9 +99,9 @@
 	<div class='frame_size_explain'>
     <h2 class='topped'>Components of Frames Size</h2>
     	<div class='p_frame_size_picture'>
-    		<div><span>Eye size</span><?php echo $dm_product_selected->set->eye_size.'mm';?></div>
-    		<div><span>Bridge size</span><?php echo $dm_product_selected->set->bridge_size.'mm';?></div>
-    		<div><span>Temple size</span><?php echo $dm_product_selected->set->temple_size.'mm';?></div>
+    		<div class='pfs_bridge'><span>Bridge size</span><?php echo $dm_product_selected->set->bridge_size.'mm';?></div>
+    		<div class='pfs_temple'><span>Temple size</span><?php echo $dm_product_selected->set->temple_size.'mm';?></div>
+    		<div class='pfs_eye'><span>Eye size</span><?php echo $dm_product_selected->set->eye_size.'mm';?></div>
     	</div>
     </div>
     <div class='clear'></div>
@@ -119,9 +121,10 @@
 	<?php endforeach; ?>
 	<div class='clear'></div>
 	<h2>Collection Description</h2>
-	<p>The Fendi sun and ophthalmic collections are not to be missed - luxurious and ultra-feminine - these styles will bring out the glamour in everyone. The new Fendi sun shields and rimless styles, in the season’s leading fashion color stories, incorporate the Fendi logo in innovative new ways and are distinctively Fendi. The plastics are rich and sensual - made even more luxurious with the addition of rhinestones. The ophthalmics appeal to both the trendy and classic Fendi consumers, with beautiful detailing, coloring, and feminine eyeshapes.</p>
+	<p><?php echo $dm_product_selected->brand_description ?></p>
 	<h2><?php echo $dm_product_selected->brand_name; ?></h2>
-	<p>Fendi is an Italian high fashion house best known for its "baguette" handbags. It was launched in 1925 as a fur and leather shop in Rome, but today is a multinational luxury goods brand owned by LVMH. Karl Lagerfeld is the creative director.
+	<p>
+		<?php echo $dm_product_selected->brand_description_history ?>
 		<img src='/images/brands/blogo38.png'/>
 	</p>
 </div>

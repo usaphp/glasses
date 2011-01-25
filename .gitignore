@@ -3,4 +3,8 @@ application/config/config.php
 application/config/config-migaz.php
 application/NetBeansAutoComplite.php
 public_html/images/photo/*
+public_html/images/temp/original/*
+public_html/images/temp/small/*
+public_html/images/temp/large/*
+public_html/images/temp/medium/*
 logs

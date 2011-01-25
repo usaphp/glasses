@@ -26,6 +26,16 @@ class Product extends DataMapper{
         $this->best_store = $this->store;
     }
     
+	public function count_short_info(){
+        return $this->include_related('brand')
+                ->include_related('type')
+                ->include_related('gender')
+                ->include_related('frame_material')
+                ->include_related('lense_material')
+                ->include_related('style')
+				->count();
+	}
+	
     public function get_short_info($id = false){
         $this->include_related('brand')
                 ->include_related('type')

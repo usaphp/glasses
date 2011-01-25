@@ -24,7 +24,7 @@ class Picture {
 		//if not resize it
 		
         // LOAD LIBRARY
-        $this->CI->load->library('my_image_lib');
+        $this->CI->load->library('image_lib');
 
         // CONFIGURE IMAGE LIBRARY
 		if($square){
