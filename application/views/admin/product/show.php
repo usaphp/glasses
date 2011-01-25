@@ -20,5 +20,5 @@
             </tr>
         <?php endforeach;?>
     </table>
-    <?php $this->load->view('pagination')?>
+    <?php $this->load->view('admin/pagination')?>
 </div>

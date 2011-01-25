@@ -6,7 +6,7 @@ class Admin_Controller extends Controller {
     private     $datamapper_form;    
     function __construct(){
         parent::__construct();        
-        $this->datamapper_form = $this->config->item('datamapper_form');        
+        $this->datamapper_form = $this->config->item('product_form');        
         $this->data                 = array();
         $this->data['js_functions'] = array();
         $this->data['crumbs']       = array();

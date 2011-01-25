@@ -5,6 +5,8 @@
     );
     
     $config['product_form'] = array(
+            'name'                  => array('view' => 'form_input',        'label' => 'Name'),         //temp
+        'description'           => array('view' => 'form_text',         'label' => 'Description'),      //temp
         'brand_id'              => array('view' => 'form_selectbox',    'label' => 'Brand',         'table' => 'brands'),
         'type_id'               => array('view' => 'form_selectbox',    'label' => 'Type',          'table' => 'types'),
         'gender_id'             => array('view' => 'form_selectbox',    'label' => 'Gender',        'table' => 'genders'),

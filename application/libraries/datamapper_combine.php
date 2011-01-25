@@ -65,23 +65,23 @@
             $this->output[$field] .= 'form_textarea';#($data);
         }
         
-        private function form_selectbox($field, $config)
-        {
-            $query = $this->db->select('id, name')->get($config['table'])->result();
-            
-            foreach($query as $row)
-                $options[$row->id] = $row->name;
-                 
-            $data = array(
-                'name'  => 'select_'.$field.'_name',
-                'options' => $options,            
-                'id'    => 'text_'.$field.'_id',
-                'class' => 'f_select wide required',
-                'selected' => $this->main_model->$field
-            );
-            $this->data['content'][$field]  = form_label($config['label'], $data['id'], array('class' => 'f_label'));
-            $this->data['content'][$field] .= form_dropdown($data['name'], $data['options'], $data['selected'], 'id = "'.$data['id'].'" class = "'.$data['class'].'"');
-        }
+//        private function form_selectbox($field, $config)
+//        {
+//            #$query = $this->db->select('id, name')->get($config['table'])->result();
+//            
+//            foreach($query as $row)
+//                $options[$row->id] = $row->name;
+//                 
+//            $data = array(
+//                'name'  => 'select_'.$field.'_name',
+//                'options' => $options,            
+//                'id'    => 'text_'.$field.'_id',
+//                'class' => 'f_select wide required',
+//                'selected' => $this->main_model->$field
+//            );
+//            $this->data['content'][$field]  = form_label($config['label'], $data['id'], array('class' => 'f_label'));
+//            $this->data['content'][$field] .= form_dropdown($data['name'], $data['options'], $data['selected'], 'id = "'.$data['id'].'" class = "'.$data['class'].'"');
+//        }
         
         private function _html_chekbox()
         {

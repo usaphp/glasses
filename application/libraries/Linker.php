@@ -79,8 +79,8 @@ class Linker {
         return $url;
     }
     
-    public function a_product_show_link(){
-        $segments = array('admin', 'product_controller', 'show');
+    public function a_product_show_link($page = false){
+        $segments = array('admin', 'product_controller', 'show', $page);
         $url = generate_url($segments);
         return $url;
     }

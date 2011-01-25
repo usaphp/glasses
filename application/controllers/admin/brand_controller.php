@@ -13,7 +13,7 @@ class Brand_controller extends Admin_Controller {
 		$this->show();
 	}
     
-    public function edit()
+    public function edit2()
     {
         $config = $this->config->item('default_form');
         $this->load->library('datamapper_combine',$config);
